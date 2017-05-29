@@ -46,4 +46,14 @@ class Chapitre extends Modele {
         return $ligne['nbChapitres'];
     }
 
+    public function ajouterChapitre(Requete $requete)
+    {
+        $sql =$this->bdd->prepare('INSERT INTO `t_chapitre` (`CHAP_numero`, `CHAP_titre`, `CHAP_contenu`, `CHAP_publication`) VALUES(:numero, :titre, :contenu, :publication');
+        $sql->bindValue(':numero',$requete->getParametre(numero), PDO::PARAM_INT);
+        $sql->bindValue(':titre', $requete->getParametre(titre), PDO::PARAM_STR);
+        $sql->bindValue(':contenu', $requete->getParametre(contenu), PDO::PARAM_STR);
+        $sql->bindValue(':publication', $requete->getParametre(publication), PDO::PARAM_INT);
+        $sql->execute();
+    }
+
 }
