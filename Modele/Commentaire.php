@@ -4,25 +4,22 @@ require_once 'Framework/Modele.php';
 
 /**
  * Fournit les services d'accès aux genres musicaux 
- * 
- * @author Baptiste Pesquet
+ *
  */
 class Commentaire extends Modele {
 
-// Renvoie la liste des commentaires associés à un billet
-    public function getCommentaires($idBillet) {
-        $sql = 'select COM_ID as id, COM_DATE as date,'
-                . ' COM_AUTEUR as auteur, COM_CONTENU as contenu from T_COMMENTAIRE'
-                . ' where BIL_ID=?';
-        $commentaires = $this->executerRequete($sql, array($idBillet));
+// Renvoie la liste des commentaires associés à un chapitre
+    public function getCommentaires($idChapitre) {
+        $sql = 'select COM_ID as id, COM_AUTEUR as auteur, COM_DATE as date, COM_CONTENU as contenu, COM_signalement as signalement, from T_COMMENTAIRE where CHAP_ID=?';
+        $commentaires = $this->executerRequete($sql, array($idChapitre));
         return $commentaires;
     }
 
-    public function ajouterCommentaire($auteur, $contenu, $idBillet) {
-        $sql = 'insert into T_COMMENTAIRE(COM_DATE, COM_AUTEUR, COM_CONTENU, BIL_ID)'
-            . ' values(?, ?, ?, ?)';
+    public function ajouterCommentaire($auteur, $contenu, $signalement, $idChapitre) {
+        $sql = 'insert into T_COMMENTAIRE(COM_DATE, COM_AUTEUR, COM_CONTENU, COM_SIGNALEMENT, CHAP_ID)'
+            . ' values(?, ?, ?, ?, ?)';
         $date = date(DATE_W3C);
-        $this->executerRequete($sql, array($date, $auteur, $contenu, $idBillet));
+        $this->executerRequete($sql, array($date, $auteur, $contenu, $signalement, $idChapitre));
     }
 
     /**

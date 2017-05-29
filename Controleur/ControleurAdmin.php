@@ -1,17 +1,15 @@
 <?php
 
 require_once 'ControleurSecurise.php';
-require_once 'Modele/billet.php';
+require_once 'Modele/Chapitre.php';
 require_once 'Modele/Commentaire.php';
 /**
  * Contrôleur des action d'administration
- *
- * @author Baptiste Psquet
  */
 
 class ControleurAdmin extends ControleurSecurise
 {
-    private $billet;
+    private $chapitre;
     private $commentaire;
 
     /**
@@ -19,15 +17,15 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function __construct()
     {
-        $this->billet = new Billet();
+        $this->chapitre = new Chapitre();
         $this->commentaire = new Commentaire();
     }
 
     public function index()
     {
-        $nbBillets =$this->billet->getNombreBillets();
+        $nbChapitres =$this->chapitre->getNombreChapitres();
         $nbCommentaires = $this->requete->getSession()->getAttribut("login");
         $login = $this->requete->getSession()->getAttribut("login");
-        $this->genererVue(array('nbBillets' =>$nbBillets, 'nbCommentaires' => $nbCommentaires, 'login' => $login));
+        $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login));
     }
 }

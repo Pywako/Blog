@@ -1,20 +1,20 @@
 <?php
 
 require_once 'Framework/Controleur.php';
-require_once 'Modele/Billet.php';
+require_once 'Modele/Chapitre.php';
 
 class ControleurAccueil extends Controleur {
 
-    private $billet;
+    private $chapitre;
 
     public function __construct() {
-        $this->billet = new Billet();
+        $this->chapitre = new Chapitre();
     }
 
-    // Affiche la liste de tous les billets du blog
+    // Affiche la liste de tous les chapitres du blog
     public function index() {
-        $billets = $this->billet->getBillets();
-        $this->genererVue(array('billets' => $billets));
+        $chapitres = $this->chapitre->getChapitres();
+        $this->genererVue(array('chapitres' => $chapitres));
     }
 
 }

@@ -4,8 +4,6 @@ require_once 'Framwork/Modele.php';
 
 /**
  * Modélise un utilisateur du blog
- *
- * @author Baptiste Pesquet
  */
 class Utilisateur extends Modele
 {
@@ -15,7 +13,7 @@ class Utilisateur extends Modele
      *
      * @param string $login Le login
      * @param string $mdp le mot de passe
-     * @return boolean Wrai si l'utilisateur existe, faux sinon
+     * @return boolean vrai si l'utilisateur existe, faux sinon
      */
     public function connecter($login, $mdp)
     {
@@ -37,10 +35,8 @@ class Utilisateur extends Modele
     {
         $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login, UTIL_MDP as mdp from T_UTILISATEUR where UTIL_LOGIN=? and UTIL_MDP=?";
         $utilisateur = $this->executerRequete($sql, array($login, $mdp));
-        if(($utilisateur->rowCount() == 1);
-        {
-            return $utilisateur->fetch; // Accès à la première ligne de résultat
-        }
+        if($utilisateur->rowCount() == 1)
+            return $utilisateur->fetch(); // Accès à la première ligne de résultat
         else
             throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }

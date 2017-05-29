@@ -50,7 +50,7 @@ class Requete
      * @return mixed // Valeur du paramètre
      * @throws Exception // Le paramètre n'existe pas dans la requête
      */
-    public function getParametres($nom)
+    public function getParametre($nom)
     {
         if ($this->existeParametreGet($nom))
         {
