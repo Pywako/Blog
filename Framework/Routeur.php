@@ -35,7 +35,7 @@ class Routeur
             $controleur = $this->creerControleur($requete);
 
             // Renomage de l'action
-            $action = $this->creerAction();
+            $action = $this->creerAction($requete);
 
             // Execution de l'action par le contrôleur
             $controleur->executerAction($action);
@@ -68,7 +68,7 @@ class Routeur
 
         //Création du nom du fichier conrôleur (Controleur/Controleur<$controleur>.php)
         $classeControleur = "Controleur" . $controleur;
-        $fichierControleur = "Controleur/" . $classeControleur . "php";
+        $fichierControleur = "Controleur/" . $classeControleur . ".php";
 
         //Chargement du fichier et création d'un objet associé
         if (file_exists($fichierControleur))
@@ -80,7 +80,7 @@ class Routeur
             return $controleur;
         }
         else{
-            throw new Exception("Fichier'$fichierControleur' introivable");
+            throw new Exception("Fichier '$fichierControleur' introuvable");
         }
     }
 
@@ -93,7 +93,7 @@ class Routeur
     private function creerAction(Requete $requete)
     {
         $action = "index"; // Action par défaut
-        if ($requete->existeParametre('action'))
+        if ($requete->existeParametreGet('action') || $requete->existeParametrePost('action'))
         {
             // Récupération de l'action dans le paramètres
             $action = $requete->getParametre('action');

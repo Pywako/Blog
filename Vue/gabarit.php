@@ -17,7 +17,7 @@
         <div id="global">
             <!-- Entête -->
             <header>
-                <a href=""></a>
+                <a href=""><h1 id="titreSites">Un billet pour l'Alaska</h1></a>
                 <p>Bienvenue !</p>
             </header>
 
