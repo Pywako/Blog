@@ -5,7 +5,7 @@
  * Date: 18/05/2017
  * Time: 10:07
  */
-$this->titre = "Mon Livre - Administration" ?>
+$this->titre = "Billet pour l'Alaska - Administration" ?>
 
 <h2>Administration</h2>
 

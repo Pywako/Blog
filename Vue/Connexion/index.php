@@ -1,4 +1,4 @@
-<?php $this->titre = "Mon Roman - Connexion" ?>
+<?php $this->titre = "Billet pour l'Alaska - Connexion" ?>
 
 <p>Vous devez être connecté pour accéder à cette zone</p>
 <form action="connexion/connecter" method="post" >

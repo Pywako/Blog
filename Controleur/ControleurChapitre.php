@@ -3,7 +3,6 @@
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Chapitre.php';
 require_once 'Modele/Commentaire.php';
-require_once 'Framework/Requete.php';
 /**
  * Contrôleur des actions liées aux chapitres
  */
