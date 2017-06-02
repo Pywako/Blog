@@ -16,11 +16,13 @@ class Commentaire extends Modele {
         return $commentaires;
     }
 
-    public function ajouterCommentaire($auteur, $contenu, $signalement, $idChapitre) {
-        $sql = 'insert into T_COMMENTAIRE(COM_DATE, COM_AUTEUR, COM_CONTENU, COM_SIGNALEMENT, CHAP_ID)'
-            . ' values(?, ?, ?, ?, ?)';
+    public function ajouterCommentaire($auteur, $contenu, $idChapitre) {
+        $sql = 'insert into T_COMMENTAIRE(COM_AUTEUR, COM_DATE, COM_CONTENU, COM_SIGNALEMENT, CHAP_ID)'
+            . ' values("\'"?"\'", "\'"?"\'", "\'"?"\'", "\'"?"\'", "\'"?"\'")';
         $date = date(DATE_W3C);
-        $this->executerRequete($sql, array($date, $auteur, $contenu, $signalement, $idChapitre));
+        $signalement = 0;
+        var_dump($contenu);
+        $this->executerRequete($sql, array($auteur, $date, $contenu, $signalement, $idChapitre));
     }
 
     /**
