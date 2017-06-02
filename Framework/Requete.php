@@ -3,13 +3,12 @@
 /**
  * Classe Traitant la requête HTTP entrante
  *
- * @version 1.0
- * @author Alice Wong
  */
 class Requete
 {
     private $parametreGet;
     private $parametrePost;
+    private $session;
 
     /*
      * Constructeur
@@ -19,6 +18,16 @@ class Requete
     {
         $this->parametreGet = $paramtreGet;
         $this->parametrePost = $parametrePost;
+        $this->session = new Session();
+    }
+
+    /**
+     * Renvoie l'objet session associé à la requête
+     * @return Session Objet session
+     */
+    public function getSession()
+    {
+        return $this->session;
     }
 
     /**
@@ -54,11 +63,11 @@ class Requete
     {
         if ($this->existeParametreGet($nom))
         {
-            return $this->parametreGet;
+            return $this->parametreGet[$nom];
         }
         elseif ($this->existeParametrePost($nom))
         {
-            return $this->parametrePost;
+            return $this->parametrePost[$nom];
         }
         else
         {

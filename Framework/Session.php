@@ -24,7 +24,7 @@ class Session
     /**
      * Ajoute un attribut et sa valeur à la session
      *
-     * @param $nom // Attribut
+     * @param string $nom // Attribut
      * @param $valeur // Valeur
      */
     public function setAttribut($nom, $valeur)

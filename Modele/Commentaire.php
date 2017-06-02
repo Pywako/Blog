@@ -10,7 +10,8 @@ class Commentaire extends Modele {
 
 // Renvoie la liste des commentaires associés à un chapitre
     public function getCommentaires($idChapitre) {
-        $sql = 'select COM_ID as id, COM_AUTEUR as auteur, COM_DATE as date, COM_CONTENU as contenu, COM_signalement as signalement, from T_COMMENTAIRE where CHAP_ID=?';
+        $sql = 'select COM_ID as id, COM_AUTEUR as auteur, COM_DATE as date, COM_CONTENU as contenu, COM_signalement as signalement
+ from T_COMMENTAIRE where CHAP_ID=?';
         $commentaires = $this->executerRequete($sql, array($idChapitre));
         return $commentaires;
     }

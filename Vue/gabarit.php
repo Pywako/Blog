@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <base href="<?= racineBlog ?>">
+        <base href="<?= $racineBlog ?>">
         <link rel="stylesheet" href="Contenu/style.css">
         <title><?= $titre ?></title>
     </head>
