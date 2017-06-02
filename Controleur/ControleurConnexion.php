@@ -3,10 +3,7 @@ require_once 'Framework/Controleur.php';
 require_once 'Modele/utilisateur.php';
 
 /**
- * Created by PhpStorm.
- * User: Pywa
- * Date: 18/05/2017
- * Time: 16:46
+ * Controleur de connexion
  */
 class ControleurConnexion extends Controleur
 {
@@ -23,9 +20,9 @@ class ControleurConnexion extends Controleur
 
     public function connecter()
     {
-        if ($this->requete->existeParametre("login") && $this->requete->existeParametre("mdp"))
+        if ($this->requete->existeParametrePost("login") && $this->requete->existeParametrePost("mdp"))
         {
-            $login = $this->requete-getParametre("login");
+            $login = $this->requete->getParametre("login");
             $mdp = $this->requete->getParametre("mdp");
             if($this->utilisateur->connecter($login, $mdp))
             {

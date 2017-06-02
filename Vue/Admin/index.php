@@ -5,7 +5,7 @@
  * Date: 18/05/2017
  * Time: 10:07
  */
-$this->titre = "Mon Blog - Administration" ?>
+$this->titre = "Mon Livre - Administration" ?>
 
 <h2>Administration</h2>
 

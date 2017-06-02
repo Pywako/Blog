@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Framwork/Modele.php';
+require_once 'Framework/Modele.php';
 
 /**
  * Modélise un utilisateur du blog
@@ -33,7 +33,8 @@ class Utilisateur extends Modele
      */
     public function getUtilisateur($login, $mdp)
     {
-        $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login, UTIL_MDP as mdp from T_UTILISATEUR where UTIL_LOGIN=? and UTIL_MDP=?";
+        $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login, UTIL_MDP as mdp from T_UTILISATEUR" .
+        "where UTIL_LOGIN=? and UTIL_MDP=?";
         $utilisateur = $this->executerRequete($sql, array($login, $mdp));
         if($utilisateur->rowCount() == 1)
             return $utilisateur->fetch(); // Accès à la première ligne de résultat
@@ -50,7 +51,8 @@ class Utilisateur extends Modele
     public function creerUtilisateur($nom, $mdp)
     {
         $mdpSecurise = $this->genererMdp($mdp);
-        $req = "INSERT INTO `t_utilisateur` (`UTIL_ID`, `UTIL_nom`, `UTIL_mdp`) VALUES (NULL, $nom, $mdpSecurise)";
+        $req = "INSERT INTO `t_utilisateur` (`UTIL_ID`, `UTIL_nom`, `UTIL_mdp`)" .
+        "VALUES (NULL, $nom, $mdpSecurise)";
         $req->execute();
     }
 }

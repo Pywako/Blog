@@ -70,4 +70,17 @@ abstract class Controleur
     {
         $this->requete = $requete;
     }
+
+    /**
+     * Effectue une redirection vers un contrôleur et une action spécifiques
+     *
+     * @param string $controleur Contrôleur
+     * @param type $action Action Action
+     */
+    protected function rediriger($controleur, $action = null)
+    {
+        $racineBlog = Configuration::get("racineBlog", "/");
+        // Redirection vers l'url Racine_site/controleur/action
+        header("Location:" . $racineBlog . $controleur . "/" . $action);
+    }
 }

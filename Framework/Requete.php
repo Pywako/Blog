@@ -1,4 +1,5 @@
 <?php
+require_once 'Session.php';
 
 /**
  * Classe Traitant la requête HTTP entrante

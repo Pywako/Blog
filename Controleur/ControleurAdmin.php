@@ -24,7 +24,7 @@ class ControleurAdmin extends ControleurSecurise
     public function index()
     {
         $nbChapitres =$this->chapitre->getNombreChapitres();
-        $nbCommentaires = $this->requete->getSession()->getAttribut("login");
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login));
     }
