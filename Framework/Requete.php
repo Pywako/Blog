@@ -1,5 +1,7 @@
 <?php
+namespace P3_blog\Framework;
 require_once 'Session.php';
+use P3_blog\Framework\Session;
 
 /**
  * Classe Traitant la requête HTTP entrante

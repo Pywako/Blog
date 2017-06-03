@@ -1,7 +1,11 @@
 <?php
+namespace P3_blog\Framework;
+
 require_once 'Requete.php';
 require_once 'Vue.php';
 
+use P3_blog\Framework\Requete;
+use P3_blog\Framework\Vue;
 /**
  * Created by PhpStorm.
  * User: Pywa

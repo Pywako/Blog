@@ -1,5 +1,5 @@
 <?php
-
+namespace P3_blog\Framework;
 require_once 'Configuration.php';
 /**
  * Classe modélisant une vue

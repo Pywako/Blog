@@ -1,8 +1,12 @@
 <?php
-
+namespace P3_blog\Framework;
 require_once 'Requete.php';
 require_once 'Controleur.php';
 require_once 'Vue.php';
+
+use P3_blog\Framework\Requete;
+use P3_blog\Framework\Controleur;
+use P3_blog\Framework\Vue;
 
 /**
  * Classe de redirection des requêtes entrantes
@@ -71,7 +75,10 @@ class Routeur
         {
             // Instanciation du contrôleur adapté
             require($fichierControleur);
-            $controleur = new $classeControleur();
+            /**$namespaceControleur = 'P3_blog\Controleur\\' . $classeControleur;
+            use $namespaceControleur;*/
+
+            $controleur = new P3_blog\Controleur\$classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
         }

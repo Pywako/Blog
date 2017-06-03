@@ -1,6 +1,8 @@
 <?php
 // Chargement du routeur
-require_once 'Framework/Routeur.php';
+namespace P3_blog;
+require_once 'Framework\Routeur.php';
+use P3_blog\Framework\Routeur;
 
 $routeur = new Routeur();
 $routeur->examinerRequete();

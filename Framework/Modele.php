@@ -1,6 +1,7 @@
 <?php
-
+namespace P3_blog\Framework;
 require_once 'Configuration.php';
+use P3_blog\Framework\Configuration;
 
 /**
  * Classe abstraite Modèle

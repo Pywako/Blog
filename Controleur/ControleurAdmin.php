@@ -1,8 +1,12 @@
 <?php
+namespace P3_blog\Controleur;
 
 require_once 'ControleurSecurise.php';
 require_once 'Modele/Chapitre.php';
 require_once 'Modele/Commentaire.php';
+use P3_blog\Modele\Chapitre;
+use P3_blog\Modele\Commentaire;
+
 /**
  * Contrôleur des action d'administration
  */

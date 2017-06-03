@@ -1,5 +1,5 @@
 <?php
-
+namespace P3_blog\Framework;
 /**
  * Classe modélisant la session
  */

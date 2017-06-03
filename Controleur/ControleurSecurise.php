@@ -1,6 +1,7 @@
 <?php
+namespace P3_blog\Controleur;
 require_once 'Framework/Controleur.php';
-
+use P3_blog\Framework\Controleur;
 /**
  * Classe parente des contrôleurs soumis à authentification
  *
