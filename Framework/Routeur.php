@@ -10,9 +10,6 @@ require_once 'Vue.php';
  * Inspirée du SimpleFramework de Frédéric Guillot et du cours de Baptiste Pesquet
  * (https://github.com/fguillot/simpleFramework)
  * (https://github.com/bpesquet/MonBlog/tree/master)
- *
- * @version 1.0
- * @author Alice Wong
  */
 
 class Routeur
@@ -39,7 +36,6 @@ class Routeur
 
             // Execution de l'action par le contrôleur
             $controleur->executerAction($action);
-
         }
         catch (Exception $e)
         {
@@ -75,7 +71,7 @@ class Routeur
         {
             // Instanciation du contrôleur adapté
             require($fichierControleur);
-            $controleur = new $classeControleur;
+            $controleur = new $classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
         }
@@ -102,7 +98,7 @@ class Routeur
     }
 
     /**
-     * Générer une vue de l'érreur (exception)
+     * Générer une vue de l'erreur (exception)
      *
      * @param Exception $exception
      */

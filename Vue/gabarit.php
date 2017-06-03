@@ -6,7 +6,7 @@
  */
 ?>
 <!doctype html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <base href="<?= $racineBlog ?>">

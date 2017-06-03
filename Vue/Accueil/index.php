@@ -2,7 +2,7 @@
 
 <?php foreach ($chapitres as $chapitre):
     ?>
-    <article>
+    <article class="chapitre">
         <header>
             <a href="<?= "Chapitre/index/" . $this->nettoyer($chapitre['id']) ?>">
                 <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['titre']) ?></h1>

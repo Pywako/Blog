@@ -1,5 +1,4 @@
 <?php
-require_once 'Configuration.php';
 require_once 'Requete.php';
 require_once 'Vue.php';
 
