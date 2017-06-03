@@ -1,7 +1,6 @@
 <?php
 namespace P3_blog\Framework;
 require_once 'Configuration.php';
-use P3_blog\Framework\Configuration;
 
 /**
  * Classe abstraite Modèle
@@ -52,7 +51,7 @@ abstract class Modele
             $mdp = Configuration::get("mdp");
 
             // Création de la connexion
-            self::$bdd = new PDO($dsn, $login, $mdp, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            self::$bdd = new \PDO($dsn, $login, $mdp, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
         }
         return self::$bdd;
     }

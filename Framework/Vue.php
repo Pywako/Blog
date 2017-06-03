@@ -25,6 +25,9 @@ class Vue
         $fichier = "Vue/";
         if ($controleur != "")
         {
+            $racineBlog = Configuration::get("racineBlog", "/");
+            $racineBlog = str_replace("/", "", $racineBlog);
+            $controleur = str_replace($racineBlog, "", $controleur);
             $fichier = $fichier . $controleur . "/";
         }
         $this->fichier = $fichier . $action . ".php";
@@ -69,7 +72,7 @@ class Vue
         }
         else
         {
-            throw new Exception("Fichier '$fichier' introuvable");
+            throw new \Exception("Fichier '$fichier' introuvable");
         }
     }
 

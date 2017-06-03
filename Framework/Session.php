@@ -58,7 +58,7 @@ class Session
         }
         else
         {
-            throw new Exception("Attribut '$nom' est absent de la session");
+            throw new \Exception("Attribut '$nom' est absent de la session");
         }
     }
 }

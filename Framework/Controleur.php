@@ -38,7 +38,7 @@ abstract class Controleur
         else
         {
             $classeControleur = get_class($this);
-            throw new Exception ("Action '$action' nom définie dans la classe '$classeControleur' ");
+            throw new \Exception ("Action '$action' nom définie dans la classe '$classeControleur' ");
         }
     }
 

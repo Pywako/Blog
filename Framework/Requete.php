@@ -74,7 +74,7 @@ class Requete
         }
         else
         {
-            throw new Exception("Le paramètre '$nom' est absent de la requête.");
+            throw new \Exception("Le paramètre '$nom' est absent de la requête.");
         }
     }
 }

@@ -48,7 +48,7 @@ class Configuration
             }
             if (!file_exists($cheminFichier))
             {
-                throw new Exception("Aucun fichier de configuration trouvé");
+                throw new \Exception("Aucun fichier de configuration trouvé");
             }
             else
             {
