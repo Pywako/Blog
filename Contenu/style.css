@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+body{
+    color: #696969;
+}
+#titreSites{
+    text-align: center;
+}
+#global{
+    margin: 150px;
+}
+.titreChapitre, #titreReponses{
+    color: #000000;
+}
+.chapitre{
+    text-align: justify;
+}
+.commentaire {
+    margin: 10 px;
+}
