@@ -1,5 +1,5 @@
 <?php
-
+namespace P3_blog\Framework;
 /**
  * Classe modélisant la session
  */
@@ -58,7 +58,7 @@ class Session
         }
         else
         {
-            throw new Exception("Attribut '$nom' est absent de la session");
+            throw new \Exception("Attribut '$nom' est absent de la session");
         }
     }
 }

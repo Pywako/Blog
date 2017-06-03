@@ -1,6 +1,9 @@
 <?php
+namespace P3_blog\Controleur;
 require_once 'Framework/Controleur.php';
 require_once 'Modele/utilisateur.php';
+use P3_blog\Framework\Controleur;
+use P3_blog\Modele\utilisateur;
 
 /**
  * Controleur de connexion

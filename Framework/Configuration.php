@@ -1,5 +1,5 @@
 <?php
-
+namespace P3_blog\Framework;
 /**
  * Classe de gestion des paramètres de configuration
  *
@@ -48,7 +48,7 @@ class Configuration
             }
             if (!file_exists($cheminFichier))
             {
-                throw new Exception("Aucun fichier de configuration trouvé");
+                throw new \Exception("Aucun fichier de configuration trouvé");
             }
             else
             {

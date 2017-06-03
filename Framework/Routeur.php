@@ -1,5 +1,5 @@
 <?php
-
+namespace P3_blog\Framework;
 require_once 'Requete.php';
 require_once 'Controleur.php';
 require_once 'Vue.php';
@@ -71,12 +71,13 @@ class Routeur
         {
             // Instanciation du contrôleur adapté
             require($fichierControleur);
+            $classeControleur = "P3_blog\Controleur\\" . $classeControleur;
             $controleur = new $classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
         }
         else{
-            throw new Exception("Fichier '$fichierControleur' introuvable");
+            throw new \Exception("Fichier '$fichierControleur' introuvable");
         }
     }
 
@@ -102,7 +103,7 @@ class Routeur
      *
      * @param Exception $exception
      */
-    public function genererErreur(Exception $exception)
+    public function genererErreur(\Exception $exception)
     {
         $vue = new Vue('erreur');
         $vue->generer(array('msgErreur' => $exception->getMessage()));
