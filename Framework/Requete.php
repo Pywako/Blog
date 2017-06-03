@@ -1,7 +1,6 @@
 <?php
 namespace P3_blog\Framework;
 require_once 'Session.php';
-use P3_blog\Framework\Session;
 
 /**
  * Classe Traitant la requête HTTP entrante
@@ -66,11 +65,13 @@ class Requete
     {
         if ($this->existeParametreGet($nom))
         {
-            return $this->parametreGet[$nom];
+            $parametreGet = htmlspecialchars($this->parametreGet[$nom]);
+            return $parametreGet;
         }
         elseif ($this->existeParametrePost($nom))
         {
-            return $this->parametrePost[$nom];
+            $parametrePost = htmlspecialchars($this->parametrePost[$nom]);
+            return $parametrePost;
         }
         else
         {

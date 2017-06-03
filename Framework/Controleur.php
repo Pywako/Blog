@@ -58,8 +58,7 @@ abstract class Controleur
     {
         // Détermination du nom du fichier vue à partir du nom du contrôleur actif
         $classeControleur = get_class($this);
-        $nomControleur = str_replace("Controleur", "", $classeControleur);
-
+        $nomControleur = str_replace("Controleur\\", "", $classeControleur);
         // Instanciation et génération de la Vue
         $vue = new Vue($this->action, $nomControleur);
         $vue->generer($donneesVue);

@@ -27,7 +27,7 @@ class Vue
         {
             $racineBlog = Configuration::get("racineBlog", "/");
             $racineBlog = str_replace("/", "", $racineBlog);
-            $controleur = str_replace($racineBlog, "", $controleur);
+            $controleur = str_replace($racineBlog."\\Controleur", "", $controleur);
             $fichier = $fichier . $controleur . "/";
         }
         $this->fichier = $fichier . $action . ".php";

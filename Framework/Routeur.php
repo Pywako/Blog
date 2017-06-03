@@ -65,7 +65,6 @@ class Routeur
         //Création du nom du fichier conrôleur (Controleur/Controleur<$controleur>.php)
         $classeControleur = "Controleur" . $controleur;
         $fichierControleur = "Controleur/" . $classeControleur . ".php";
-
         //Chargement du fichier et création d'un objet associé
         if (file_exists($fichierControleur))
         {

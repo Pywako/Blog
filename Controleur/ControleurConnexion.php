@@ -32,11 +32,11 @@ class ControleurConnexion extends Controleur
                 $utilisateur = $this->utilisateur->getUtilisateur($login, $mdp);
                 $this->requete->getSession()->setAttribut("idUtilisateur", $utilisateur['idUtilisateur']);
                 $this->requete->getSession()->setAttribut("login", $utilisateur['login']);
-                $this->rediriger("admin");
+                $this->rediriger("ControleurAdmin", "admin");
             }
             else
             {
-                $this->genererVue(array('msgErreur' => 'Login ou mot de passe incorrects'), "index");
+                $this->genererVue(array('msgErreur' => 'Login ou mot de passe incorrects'));
             }
         }
         else
@@ -46,6 +46,6 @@ class ControleurConnexion extends Controleur
     public function deconnecter()
     {
         $this->requete->getSession()->detruire();
-        $this->rediriger("accueil");
+        $this->rediriger("ControleurAccueil", "accueil");
     }
 }
