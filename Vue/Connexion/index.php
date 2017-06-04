@@ -7,5 +7,5 @@
     <button type="submit" >Connexion</button>
 </form>
 <?php if (isset($msgErreur)): ?>
-    <p><?= $msgErreur ?></p>
+    <p class="msgErreur"><?= $msgErreur ?></p>
 <?php endif; ?>
