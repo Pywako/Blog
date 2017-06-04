@@ -24,7 +24,7 @@ abstract class Controleur
      * Exécution de l'action à réaliser
      * Appel de la méthode portant le même nom que l'objet controleur actif
      *
-     * @param $action
+     * @param string $action
      * @throws Exception
      */
 

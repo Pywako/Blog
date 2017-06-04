@@ -11,6 +11,7 @@ use P3_blog\Modele\utilisateur;
 class ControleurConnexion extends Controleur
 {
     private $utilisateur;
+    private $msgErreur;
     public function __construct()
     {
         $this->utilisateur = new Utilisateur();
@@ -18,7 +19,14 @@ class ControleurConnexion extends Controleur
 
     public function index()
     {
-        $this->genererVue();
+        if(empty($this->msgErreur))
+        {
+            $this->genererVue();
+        }
+        else
+        {
+            $this->genererVue($this->msgErreur);
+        }
     }
 
     public function connecter()
@@ -32,15 +40,16 @@ class ControleurConnexion extends Controleur
                 $utilisateur = $this->utilisateur->getUtilisateur($login, $mdp);
                 $this->requete->getSession()->setAttribut("idUtilisateur", $utilisateur['idUtilisateur']);
                 $this->requete->getSession()->setAttribut("login", $utilisateur['login']);
-                $this->rediriger("ControleurAdmin", "admin");
+                $this->rediriger("ControleurAdmin");
             }
             else
             {
-                $this->genererVue(array('msgErreur' => 'Login ou mot de passe incorrects'));
+                $this->msgErreur = array('msgErreur' => 'Login ou mot de passe incorrects');
+                $this->executerAction("index");
             }
         }
         else
-            throw new Exception ("Action impossible : login ou mot de passe non défini");
+            throw new \Exception ("Action impossible : login ou mot de passe non défini");
     }
 
     public function deconnecter()
