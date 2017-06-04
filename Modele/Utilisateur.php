@@ -17,29 +17,33 @@ class Utilisateur extends Modele
      */
     public function connecter($login, $mdp)
     {
-        $sql = "select UTIL_ID from T_UTILISATEUR where UTIL_LOGIN=? and UTIL_MDP=?";
-        $mdpVerifier = password_verify($mdp, PASSWORD_BCRYPT);
-        $utilisateur = $this->executerRequete($sql, array($login, $mdpVerifier));
-        return ($utilisateur->rowCount() == 1);
+        $sql = "select UTIL_MDP from T_UTILISATEUR where UTIL_LOGIN=?";
+        $utilisateur = $this->executerRequete($sql, array($login));
+        if($utilisateur->rowCount() == 1)
+        {
+            $utilisateurTeste = $utilisateur->fetch();
+            return(password_verify($mdp, $utilisateurTeste['UTIL_MDP']));
+        }
+        else{
+            return ($utilisateur->rowCount() == 1);
+        }
     }
 
     /**
      * Renvoie un utilisateur existant dans la BD
      *
      * @param string $login Le login
-     * @param string $mdp Le mot de passe
      * @return mixed L'utilisteur
      * @throws Exception si aucun utilisateur ne correspond aux paramètres
      */
-    public function getUtilisateur($login, $mdp)
+    public function getUtilisateur($login)
     {
-        $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login, UTIL_MDP as mdp from T_UTILISATEUR" .
-        "where UTIL_LOGIN=? and UTIL_MDP=?";
-        $utilisateur = $this->executerRequete($sql, array($login, $mdp));
+        $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login from T_UTILISATEUR where UTIL_LOGIN=?";
+        $utilisateur = $this->executerRequete($sql, array($login));
         if($utilisateur->rowCount() == 1)
             return $utilisateur->fetch(); // Accès à la première ligne de résultat
         else
-            throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
+            throw new \Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }
 
     private function genererMdp($mdp)

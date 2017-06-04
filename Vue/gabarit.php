@@ -18,7 +18,8 @@
             <!-- Entête -->
             <header>
                 <a href=""><h1 id="titreSites">Un billet pour l'Alaska</h1></a>
-                <p>Bienvenue !</p>
+                <p>Bienvenue !
+                    Pour accéder au tableau de bord c'est par <a href="connexion">ici</a> </p>
             </header>
 
             <!-- Contenu -->
