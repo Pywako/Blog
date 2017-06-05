@@ -11,6 +11,12 @@
         <meta charset="UTF-8">
         <base href="<?= $racineBlog ?>">
         <link rel="stylesheet" href="Contenu/style.css">
+        <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: '#chapitre'
+            });
+        </script>
         <title><?= $titre ?></title>
     </head>
     <body>
