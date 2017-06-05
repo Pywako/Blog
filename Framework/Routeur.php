@@ -1,8 +1,5 @@
 <?php
 namespace P3_blog\Framework;
-require_once 'Requete.php';
-require_once 'Controleur.php';
-require_once 'Vue.php';
 
 /**
  * Classe de redirection des requêtes entrantes
@@ -37,7 +34,7 @@ class Routeur
             // Execution de l'action par le contrôleur
             $controleur->executerAction($action);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             $this->genererErreur($e);
         }
@@ -69,7 +66,6 @@ class Routeur
         if (file_exists($fichierControleur))
         {
             // Instanciation du contrôleur adapté
-            require($fichierControleur);
             $classeControleur = "P3_blog\Controleur\\" . $classeControleur;
             $controleur = new $classeControleur();
             $controleur->setRequete($requete);

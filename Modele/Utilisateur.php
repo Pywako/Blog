@@ -1,6 +1,5 @@
 <?php
 namespace P3_blog\Modele;
-require_once 'Framework/Modele.php';
 use P3_blog\Framework\Modele;
 /**
  * Modélise un utilisateur du blog

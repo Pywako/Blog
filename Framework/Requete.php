@@ -1,6 +1,6 @@
 <?php
 namespace P3_blog\Framework;
-require_once 'Session.php';
+
 
 /**
  * Classe Traitant la requête HTTP entrante
@@ -59,7 +59,7 @@ class Requete
      *
      * @param $nom // Nom du paramètre
      * @return mixed // Valeur du paramètre
-     * @throws Exception // Le paramètre n'existe pas dans la requête
+     * @throws \Exception // Le paramètre n'existe pas dans la requête
      */
     public function getParametre($nom)
     {

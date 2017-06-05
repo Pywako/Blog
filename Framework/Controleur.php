@@ -1,11 +1,6 @@
 <?php
 namespace P3_blog\Framework;
 
-require_once 'Requete.php';
-require_once 'Vue.php';
-
-use P3_blog\Framework\Requete;
-use P3_blog\Framework\Vue;
 /**
  * Created by PhpStorm.
  * User: Pywa
@@ -25,7 +20,7 @@ abstract class Controleur
      * Appel de la méthode portant le même nom que l'objet controleur actif
      *
      * @param string $action
-     * @throws Exception
+     * @throws \Exception
      */
 
     public function executerAction($action)
