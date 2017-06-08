@@ -28,4 +28,16 @@ class ControleurAdmin extends ControleurSecurise
         $login = $this->requete->getSession()->getAttribut("login");
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login));
     }
+
+    public function creer()
+    {
+        $numero = $this->requete->getParametre("numero");
+        $titre = $this->requete->getParametre("titre");
+        $contenu = $this->requete->getParametre("contenu");
+        $publication = $this->requete->getParametre("publication");
+        $this->chapitre->ajouterChapitre($numero, $titre, $contenu, $publication);
+
+        $this->executerAction("creer");
+    }
+
 }
