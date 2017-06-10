@@ -10,6 +10,7 @@ class Vue
     private $fichier;
     // Titre de la vue (défini dans le fichier vue)
     private $titre;
+    private $msg;
 
     /**
      * Constructeur de la Vue
@@ -17,7 +18,7 @@ class Vue
      * @param string $action  // Action associé à la vue
      * @param string $controleur // Nom du contrôleur associé à la vue
      */
-    public function __construct($action, $controleur = "")
+    public function __construct($action, $controleur = "", $msg = "", $typeMsg="")
     {
         // Détermination du nom du fichier vue à partir de l'action et du controleur
         // Convention de nommage des fichiers vues : Vue/<$controleur>/<$action>.php
@@ -29,6 +30,8 @@ class Vue
             $controleur = str_replace($racineBlog."\\Controleur", "", $controleur);
             $fichier = $fichier . $controleur . "/";
         }
+
+        $this->msg = array ("message" => $msg, "typeMsg" => $typeMsg);
         $this->fichier = $fichier . $action . ".php";
     }
 
@@ -43,8 +46,24 @@ class Vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
         // On définit une variable locale accessible par la vue pour la racine du blog
         $racineBlog = Configuration::get("racineBlog", "/");
+        if ($this->msg["typeMsg"] == "erreur")
+        {
+            $msgErreur = $this->msg["message"];
+            $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu,
+                'racineBlog' => $racineBlog, 'msgErreur' => $msgErreur));
+        }
+        elseif ($this->msg["typeMsg"] == "retour")
+        {
+            $msgRetour = $this->msg["message"];
+            $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu,
+                'racineBlog' => $racineBlog, 'msgRetour' => $msgRetour));
+        }
+        else
+        {
+            $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu,
+                'racineBlog' => $racineBlog));
+        }
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu, 'racineBlog' => $racineBlog));
         echo $vue; // Affiche la vue générée
     }
 

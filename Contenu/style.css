@@ -23,3 +23,6 @@ body{
 .msgErreur {
     color: red;
 }
+.msgRetour {
+    color: green;
+}

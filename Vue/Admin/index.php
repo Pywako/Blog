@@ -10,7 +10,8 @@ $this->titre = "Billet pour l'Alaska - Administration" ?>
 <h2>Administration</h2>
 
 Bienvenue, <?= $this->nettoyer($login) ?> !
+
 Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
  et <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).
 <a id="lienDeco" href="connexion/deconnecter">Se déconnecter</a><br>
-<button><a id="ecrire" href="article"></a>Ecrire un chapitre</button>
+<a id="ecrire" href="admin/creation"><button>Ecrire un chapitre</button></a>

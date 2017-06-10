@@ -10,7 +10,6 @@ use P3_blog\Modele\utilisateur;
 class ControleurConnexion extends Controleur
 {
     private $utilisateur;
-    private $msgErreur;
     public function __construct()
     {
         $this->utilisateur = new Utilisateur();
@@ -18,14 +17,7 @@ class ControleurConnexion extends Controleur
 
     public function index()
     {
-        if(empty($this->msgErreur))
-        {
-            $this->genererVue();
-        }
-        else
-        {
-            $this->genererVue($this->msgErreur);
-        }
+        $this->genererVue();
     }
 
     public function connecter()
@@ -43,7 +35,7 @@ class ControleurConnexion extends Controleur
             }
             else
             {
-                $this->msgErreur = array('msgErreur' => 'Login ou mot de passe incorrects');
+                $this->setMsgErreur('Login ou mot de passe incorrects');
                 $this->executerAction("index");
             }
         }

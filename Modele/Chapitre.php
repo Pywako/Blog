@@ -13,7 +13,7 @@ class Chapitre extends Modele {
      */
     public function getChapitres() {
         $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
         $chapitres = $this->executerRequete($sql);
         return $chapitres;
     }
@@ -26,7 +26,7 @@ CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom fr
      */
     public function getChapitre($idChapitre) {
         $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
         $chapitre = $this->executerRequete($sql, array($idChapitre));
         if ($chapitre->rowCount() > 0)
             return $chapitre->fetch();  // Accès à la première ligne de résultat
@@ -60,12 +60,10 @@ CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom fr
      * @param $numero
      * @param $titre
      * @param $contenu
-     * @param $publication
      */
-    public function ajouterChapitre($numero, $titre, $contenu, $publication)
+    public function ajouterChapitre($numero, $titre, $contenu)
     {
-        $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU, CHAP_PUBLICATION) VALUES(?,?,?,?)';
-        $this->executerRequete($sql, array($numero, $titre, $contenu, $publication));
-        $this->msgRetour = "Le chapitre '$this->getNumDernierChapitre()' a bien été ajouté !";
+        $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU) VALUES(?,?,?)';
+        $this->executerRequete($sql, array($numero, $titre, $contenu));
     }
 }
