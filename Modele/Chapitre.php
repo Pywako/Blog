@@ -57,13 +57,25 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
 
     /**
      * Ajout d'un chapitre dans la bdd
-     * @param $numero
-     * @param $titre
-     * @param $contenu
+     * @param float $numero
+     * @param string $titre
+     * @param string $contenu
      */
     public function ajouterChapitre($numero, $titre, $contenu)
     {
         $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU) VALUES(?,?,?)';
         $this->executerRequete($sql, array($numero, $titre, $contenu));
+    }
+
+    public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
+    {
+        $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
+ WHERE CHAP_id = '.$chapitreId.'";
+        $this->executerRequete($sql, array($numero, $titre, $contenu));
+    }
+    public function supprimerChapitre($chapitreId)
+    {
+        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = .'$chapitreId'";
+        $this->executerRequete($sql);
     }
 }

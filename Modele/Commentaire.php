@@ -33,4 +33,30 @@ class Commentaire extends Modele {
         $ligne = $resultat->fetch();
         return $ligne['nbCommentaires'];
     }
+
+    public function modifierCommentaire($contenu, $signalement, $chapitreId)
+    {
+        $sql = "UPDATE t_commentaire SET com_contenu = ?, com_signalement = ? 
+WHERE chap_id = '.$chapitreId.'";
+        $this->executerRequete($sql, array($contenu, $signalement));
+    }
+
+    public function supprimerCommentaire($chapitreId)
+    {
+        $sql = "DELETE FROM t_commentaire WHERE CHAP_id = .'$chapitreId'";
+        $this->executerRequete($sql);
+    }
+
+
+    public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
+    {
+        $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
+ WHERE CHAP_id = '.$chapitreId.'";
+        $this->executerRequete($sql, array($numero, $titre, $contenu));
+    }
+    public function supprimerChapitre($chapitreId)
+    {
+        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = .'$chapitreId'";
+        $this->executerRequete($sql);
+    }
 }
