@@ -12,7 +12,8 @@ class Chapitre extends Modele {
      * @return PDOStatement La liste des billets
      */
     public function getChapitres() {
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
+        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
         $chapitres = $this->executerRequete($sql);
         return $chapitres;
     }
@@ -24,7 +25,8 @@ class Chapitre extends Modele {
      * @throws Exception Si l'identifiant du billet est inconnu
      */
     public function getChapitre($idChapitre) {
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, CHAP_CONTENU as contenu, CHAP_publication as publication, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
+        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
         $chapitre = $this->executerRequete($sql, array($idChapitre));
         if ($chapitre->rowCount() > 0)
             return $chapitre->fetch();  // Accès à la première ligne de résultat
@@ -45,9 +47,23 @@ class Chapitre extends Modele {
         return $ligne['nbChapitres'];
     }
 
-    public function ajouterChapitre($numero, $titre, $contenu, $publication)
+    public function getNumDernierChapitre()
     {
-        $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU, CHAP_PUBLICATION) VALUES(?,?,?,?)';
-        $this->executerRequete($sql, array($numero, $titre, $contenu, $publication));
+        $sql = 'SELECT CHAP_numero AS numero FROM t_chapitre ORDER BY CHAP_id DESC LIMIT 1 OFFSET 0';
+        $resultat = $this->executerRequete($sql);
+        $ligne = $resultat->fetch();
+        return $ligne['numero'];
+    }
+
+    /**
+     * Ajout d'un chapitre dans la bdd
+     * @param $numero
+     * @param $titre
+     * @param $contenu
+     */
+    public function ajouterChapitre($numero, $titre, $contenu)
+    {
+        $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU) VALUES(?,?,?)';
+        $this->executerRequete($sql, array($numero, $titre, $contenu));
     }
 }

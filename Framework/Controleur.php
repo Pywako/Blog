@@ -14,6 +14,8 @@ abstract class Controleur
 
     // Requête entrante
     protected $requete;
+    protected $msgErreur;
+    protected $msgRetour;
 
     /**
      * Exécution de l'action à réaliser
@@ -55,7 +57,19 @@ abstract class Controleur
         $classeControleur = get_class($this);
         $nomControleur = str_replace("Controleur\\", "", $classeControleur);
         // Instanciation et génération de la Vue
-        $vue = new Vue($this->action, $nomControleur);
+        if (isset($this->msgErreur) && $this->msgErreur != null)
+        {
+            $vue = new Vue($this->action, $nomControleur, $this->msgErreur, 'erreur');
+        }
+        else if (isset($this->msgRetour) && $this->msgRetour != null)
+        {
+            $vue = new Vue($this->action, $nomControleur, $this->msgRetour, 'retour');
+        }
+        else
+        {
+            $vue = new Vue($this->action, $nomControleur);
+        }
+
         $vue->generer($donneesVue);
     }
 
@@ -73,12 +87,49 @@ abstract class Controleur
      * Effectue une redirection vers un contrôleur et une action spécifiques
      *
      * @param string $controleur Contrôleur
-     * @param type $action Action Action
+     * @param string $action Action Action
      */
     protected function rediriger($controleur, $action = null)
     {
         $racineBlog = Configuration::get("racineBlog", "/");
         // Redirection vers l'url Racine_site/controleur/action
         header("Location:" . $racineBlog . $controleur . "/" . $action);
+    }
+    protected function setMsgErreur($msgErreur)
+    {
+        if (isset($msgErreur) && $msgErreur != null)
+        {
+            $this->msgErreur = $msgErreur;
+        }
+        else
+        {
+            throw new \Exception ("Message d'erreur non défini");
+        }
+    }
+    protected function setMsgRetour(string $msgRetour)
+    {
+        if (isset($msgRetour) && $msgRetour != null)
+        {
+            $this->msgRetour = $msgRetour;
+        }
+        else
+        {
+            throw new \Exception ("Message de retour non défini");
+        }
+    }
+
+    protected function getMsgErreur()
+    {
+        if (isset($msgErreur))
+        {
+            return $this->msgErreur;
+        }
+    }
+    protected function getMsgRetour()
+    {
+        if (isset($msgRetour))
+        {
+            return $this->msgRetour;
+        }
     }
 }

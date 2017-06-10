@@ -22,7 +22,6 @@ class Routeur
             $requeteGet = $_GET;
             // Récupération des requêtes POST
             $requetePost = $_POST;
-
             // Création d'un objet Requette avec Les 2 attribut précédent en entrée
             $requete = new Requete($requeteGet, $requetePost);
             // Création du contrôleur associé à l'action

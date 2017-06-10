@@ -23,10 +23,8 @@ class ControleurChapitre extends Controleur {
     // Affiche les détails sur un chapitre
     public function index() {
         $idChapitre = $this->requete->getParametre("id");
-        
         $chapitre = $this->chapitre->getChapitre($idChapitre);
         $commentaires = $this->commentaire->getCommentaires($idChapitre);
-        
         $this->genererVue(array('chapitre' => $chapitre, 'commentaires' => $commentaires));
     }
 
