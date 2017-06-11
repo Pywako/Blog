@@ -81,8 +81,8 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
     public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
     {
         $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
- WHERE CHAP_id = '.$chapitreId.'";
-        $this->executerRequete($sql, array($numero, $titre, $contenu));
+ WHERE CHAP_id = ?";
+        $this->executerRequete($sql, array($numero, $titre, $contenu, $chapitreId));
     }
 
     /**
@@ -91,7 +91,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
      */
     public function supprimerChapitre($chapitreId)
     {
-        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = $chapitreId";
-        $this->executerRequete($sql);
+        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = ?";
+        $this->executerRequete($sql, array($chapitreId));
     }
 }
