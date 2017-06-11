@@ -34,9 +34,7 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
                 <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
                 <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
-                <td><a id="modifierCommentaire" href="<?= "admin/modifierCommmentaire/" . $commentaire['chap_id']?>">
-                        <button type="button" class="btn btn-info">Modifier</button></a><br>
-                    <a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['chap_id']?>">
+                <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']. "/" . $commentaire['com_auteur']?>">
                         <button type="button" class="btn btn-danger">Supprimer</button></a></td>
             </tr>
         <?php endforeach; ?>
