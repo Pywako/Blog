@@ -15,6 +15,34 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
 <a id="lienDeco" href="connexion/deconnecter">Se déconnecter</a><br>
 <a id="ecrire" href="admin/creation"><button type="button" class="btn btn-success">Ecrire un chapitre</button></a>
 
+<h3>Derniers commentaires</h3>
+<div class="table-responsive">
+    <table class = "table table-striped table-bordered table-hover">
+        <tr>
+            <th>Auteur</th>
+            <th>Date</th>
+            <th>Chapitre</th>
+            <th>Commentaire</th>
+            <th>Signalement</th>
+            <th>Actions</th>
+        </tr>
+        <?php foreach ($commentaires as $commentaire): ?>
+            <tr>
+                <td><?= $this->nettoyer($commentaire['com_auteur']) ?></td>
+                <td><time></time><?= $this->nettoyer($commentaire['com_date']) ?></time></td>
+                <td><?php echo $this->nettoyer($commentaire['chap_id']); ?></td>
+                <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
+                <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
+
+                <td><a id="modifierCommentaire" href="<?= "admin/modifierCommmentaire/" . $commentaire['chap_id']?>">
+                        <button type="button" class="btn btn-info">Modifier</button></a><br>
+                    <a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['chap_id']?>">
+                        <button type="button" class="btn btn-danger">Supprimer</button></a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+
 <h3>Liste des chapitres</h3>
 <div class="table-responsive">
     <table class = "table table-striped table-bordered table-hover">
