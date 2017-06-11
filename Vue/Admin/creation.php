@@ -16,7 +16,7 @@ Page d'écriture et modification du chapitre
             <input type="text" name="numero" id="numero" value="<?php echo $this->nettoyer($numeroChapitre)?>" required> <br>
             <input type="hidden" name="id" id="id" value="<?php echo $this->nettoyer($numeroChapitre)?>">
         </p>
-        <textarea id="creerChapitre" name="contenu" placeholder="Ecrire le contenu du chapitre ici" required>
+        <textarea id="creerChapitre" name="contenu" class="mytextarea" required>
 
     </textarea>
         <input type="submit" value = "envoyer">
