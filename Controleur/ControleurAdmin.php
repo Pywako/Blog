@@ -39,18 +39,17 @@ class ControleurAdmin extends ControleurSecurise
      * Fonction générant le panneau de création de chapitre
      *
      */
-    public function creation($chapitreId = null)
+    public function creation()
     {
-        if (isset($chapitreId) && $chapitreId != null)
-        {
-            $this->chapitre = $this->chapitre->getChapitres($chapitreId);
-            $this->genererVue(array('chapitres'=> $this->chapitre));
-        }
-        else
-        {
-            $numeroChapitre = $this->chapitre->getNumDernierChapitre() + 1;
-            $this->genererVue(array('numeroChapitre' =>$numeroChapitre));
-        }
+        $numeroChapitre = $this->chapitre->getNumDernierChapitre() + 1;
+        $this->genererVue(array('numeroChapitre' =>$numeroChapitre));
+
+    }
+    public function modification()
+    {
+        $chapitreId = $this->requete->getParametre("id");
+        $chapitre= $this->chapitre->getChapitre($chapitreId);
+        $this->genererVue(array('chapitre'=> $chapitre));
     }
 
     /**
@@ -71,10 +70,11 @@ class ControleurAdmin extends ControleurSecurise
     public function modifierChapitre()
     {
         $chapitreId = $this->requete->getParametre("id");
-        $chapitreNumero = $this->requete->getParametre("numero");
-        $this->creation($chapitreId);
-        $this->chapitre->modifierChapitre($chapitreId);
-        $this->setMsgRetour("Le chapitre $chapitreNumero a bien été modifié.");
+        $numero = $this->requete->getParametre("numero");
+        $titre = $this->requete->getParametre("titre");
+        $contenu = $this->requete->getParametre("contenuChapitre");
+        $this->chapitre->modifierChapitre($numero, $titre, $contenu, $chapitreId);
+        $this->setMsgRetour("Le chapitre $numero a bien été modifié.");
         $this->executerAction("index");
     }
 
