@@ -47,6 +47,10 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
         return $ligne['nbChapitres'];
     }
 
+    /**
+     * Fonction de récupération du numéro du dernier chapitre publié dans la bdd
+     * @return int
+     */
     public function getNumDernierChapitre()
     {
         $sql = 'SELECT CHAP_numero AS numero FROM t_chapitre ORDER BY CHAP_id DESC LIMIT 1 OFFSET 0';
@@ -67,15 +71,27 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
         $this->executerRequete($sql, array($numero, $titre, $contenu));
     }
 
+    /**
+     * Fonction de modification d'un chapitre
+     * @param int $numero
+     * @param string $titre
+     * @param string $contenu
+     * @param int $chapitreId
+     */
     public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
     {
         $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
  WHERE CHAP_id = '.$chapitreId.'";
         $this->executerRequete($sql, array($numero, $titre, $contenu));
     }
+
+    /**
+     * Fonction de suppression d'un chapitre grâce à son id
+     * @param int $chapitreId
+     */
     public function supprimerChapitre($chapitreId)
     {
-        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = .'$chapitreId'";
+        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = $chapitreId";
         $this->executerRequete($sql);
     }
 }
