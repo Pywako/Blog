@@ -49,9 +49,9 @@ WHERE chap_id = ?";
         $this->executerRequete($sql, array($contenu, $signalement, $chapitreId));
     }
 
-    public function supprimerCommentaire($chapitreId)
+    public function supprimerCommentaire($commentaireId)
     {
-        $sql = "DELETE FROM t_commentaire WHERE CHAP_id = ?";
-        $this->executerRequete($sql, array($chapitreId));
+        $sql = "DELETE FROM t_commentaire WHERE COM_id = ?";
+        $this->executerRequete($sql, array($commentaireId));
     }
 }
