@@ -15,6 +15,14 @@ class Commentaire extends Modele {
         return $commentaires;
     }
 
+    public function getAllCommentaires()
+    {
+        $sql = 'select COM_ID as com_id, COM_AUTEUR as com_auteur, COM_DATE as com_date, COM_CONTENU as com_contenu, 
+COM_signalement as com_signalement, chap_id as chap_id from T_COMMENTAIRE order by CHAP_ID DESC';
+        $commentaires = $this->executerRequete($sql);
+        return $commentaires;
+    }
+
     public function ajouterCommentaire($auteur, $contenu, $idChapitre) {
         $sql = 'insert into T_COMMENTAIRE(COM_AUTEUR, COM_CONTENU, CHAP_ID)'
             . ' values(?,?,?)';
