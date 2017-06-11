@@ -29,10 +29,11 @@ class ControleurAdmin extends ControleurSecurise
         $chapitres = $this->chapitre->getChapitres();
         $nbChapitres =$this->chapitre->getNombreChapitres();
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        $commentaires = $this->commentaire->getAllCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
         $msgRetour = $this->getMsgRetour();
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
-            'msgRetour' => $msgRetour, 'chapitres' => $chapitres, /*'commentaires' => $commentaires*/));
+            'msgRetour' => $msgRetour, 'chapitres' => $chapitres, 'commentaires' => $commentaires));
     }
 
     /**
@@ -90,4 +91,14 @@ class ControleurAdmin extends ControleurSecurise
         $this->setMsgRetour("Le chapitre $chapitreNumero a bien été supprimé.");
         $this->executerAction("index");
     }
+
+    public function supprimerCommentaire()
+    {
+        $commentaireId = $this->requete->getParametre('id');
+        $auteur = $this->requete->getParametre('numero');
+        $this->commentaire->supprimerCommentaire($commentaireId);
+        $this->setMsgRetour("Le commentaire de $auteur a bien été supprimé.");
+        $this->executerAction("index");
+    }
+
 }
