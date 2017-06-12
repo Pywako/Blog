@@ -65,12 +65,12 @@ class Requete
     {
         if ($this->existeParametreGet($nom))
         {
-            $parametreGet = htmlspecialchars($this->parametreGet[$nom]);
+            $parametreGet = $this->parametreGet[$nom];
             return $parametreGet;
         }
         elseif ($this->existeParametrePost($nom))
         {
-            $parametrePost = htmlspecialchars($this->parametrePost[$nom]);
+            $parametrePost = $this->parametrePost[$nom];
             return $parametrePost;
         }
         else
