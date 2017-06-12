@@ -9,7 +9,7 @@
             </a>
             <time><?= $this->nettoyer($chapitre['date']) ?></time>
         </header>
-        <p><?= $this->nettoyer($chapitre['contenu']) ?></p>
+        <p><?= $chapitre['contenu'] ?></p>
     </article>
     <hr />
 <?php endforeach; ?>
