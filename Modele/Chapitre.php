@@ -31,7 +31,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
         if ($chapitre->rowCount() > 0)
             return $chapitre->fetch();  // Accès à la première ligne de résultat
         else
-            throw new Exception("Aucun chapitre ne correspond à l'identifiant '$idChapitre'");
+            throw new \Exception("Aucun chapitre ne correspond à l'identifiant '$idChapitre'");
     }
 
     /**
