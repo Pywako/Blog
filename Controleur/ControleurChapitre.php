@@ -25,7 +25,8 @@ class ControleurChapitre extends Controleur {
         $idChapitre = $this->requete->getParametre("id");
         $chapitre = $this->chapitre->getChapitre($idChapitre);
         $commentaires = $this->commentaire->getCommentaires($idChapitre);
-        $this->genererVue(array('chapitre' => $chapitre, 'commentaires' => $commentaires));
+        $msgRetour = $this->getMsgRetour();
+        $this->genererVue(array('chapitre' => $chapitre, 'commentaires' => $commentaires, 'msgRetour' => $msgRetour));
     }
 
     // Ajoute un commentaire sur un billet
@@ -35,6 +36,13 @@ class ControleurChapitre extends Controleur {
         $contenu = $this->requete->getParametre("contenu");
         $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
         
+        // Exécution de l'action par défaut pour réafficher la liste des billets
+        $this->executerAction("index");
+    }
+    public function signaler() {
+        $commentaireId = $this->requete->getParametre("numero");
+        $this->commentaire->signaler($commentaireId);
+        $this->setMsgRetour("Le commentaire a bien été signalé.");
         // Exécution de l'action par défaut pour réafficher la liste des billets
         $this->executerAction("index");
     }

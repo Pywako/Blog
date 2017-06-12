@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <base href="<?= $racineBlog ?>">
         <link rel="stylesheet" href="Contenu/style.css">
+        <script src="../jquery-3.2.1.min.js"></script>
         <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
         <script>tinymce.init({
                 selector:'.mytextarea',

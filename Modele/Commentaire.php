@@ -9,9 +9,17 @@ class Commentaire extends Modele {
 
 // Renvoie la liste des commentaires associés à un chapitre
     public function getCommentaires($idChapitre) {
-        $sql = 'select COM_ID as id, COM_AUTEUR as auteur, COM_DATE as date, COM_CONTENU as contenu, COM_signalement as signalement
- from T_COMMENTAIRE where CHAP_ID=?';
+        $sql = 'select COM_ID as id, COM_AUTEUR as auteur, COM_DATE as date, COM_CONTENU as contenu, 
+COM_signalement as signalement, CHAP_id as chap_id  from T_COMMENTAIRE where CHAP_ID=?';
         $commentaires = $this->executerRequete($sql, array($idChapitre));
+        return $commentaires;
+    }
+
+    public function getAllCommentaires()
+    {
+        $sql = 'select COM_ID as com_id, COM_AUTEUR as com_auteur, COM_DATE as com_date, COM_CONTENU as com_contenu, 
+COM_signalement as com_signalement, chap_id as chap_id from T_COMMENTAIRE order by com_signalement DESC, COM_DATE DESC';
+        $commentaires = $this->executerRequete($sql);
         return $commentaires;
     }
 
@@ -33,30 +41,22 @@ class Commentaire extends Modele {
         $ligne = $resultat->fetch();
         return $ligne['nbCommentaires'];
     }
+    public function signaler($commentaireId)
+    {
+        $sql = "UPDATE t_commentaire SET com_signalement = com_signalement + 1 WHERE com_id = ?";
+        $this->executerRequete($sql, array($commentaireId));
+    }
 
-    public function modifierCommentaire($contenu, $signalement, $chapitreId)
+    public function modifierCommentaire($contenu, $signalement, $commentaireId)
     {
         $sql = "UPDATE t_commentaire SET com_contenu = ?, com_signalement = ? 
-WHERE chap_id = '.$chapitreId.'";
-        $this->executerRequete($sql, array($contenu, $signalement));
+WHERE com_id = ?";
+        $this->executerRequete($sql, array($contenu, $signalement, $commentaireId));
     }
 
-    public function supprimerCommentaire($chapitreId)
+    public function supprimerCommentaire($commentaireId)
     {
-        $sql = "DELETE FROM t_commentaire WHERE CHAP_id = .'$chapitreId'";
-        $this->executerRequete($sql);
-    }
-
-
-    public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
-    {
-        $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
- WHERE CHAP_id = '.$chapitreId.'";
-        $this->executerRequete($sql, array($numero, $titre, $contenu));
-    }
-    public function supprimerChapitre($chapitreId)
-    {
-        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = .'$chapitreId'";
-        $this->executerRequete($sql);
+        $sql = "DELETE FROM t_commentaire WHERE COM_id = ?";
+        $this->executerRequete($sql, array($commentaireId));
     }
 }
