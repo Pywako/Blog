@@ -16,7 +16,7 @@ $this->titre = "Billet pour l'Alaska - Modifier";
         <input type="hidden" name="id" id="id" value="<?php echo $chapitre['id']?>">
     </p>
     <textarea id="contenuChapitre" name="contenuChapitre"  class="mytextarea" required>
-        <?php echo $this->nettoyer($chapitre['contenu'])?>
+        <?php echo $chapitre['contenu']?>
         </textarea>
 
     <input type="submit" value = "envoyer">
