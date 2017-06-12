@@ -26,18 +26,18 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
             <th>Signalement</th>
             <th>Actions</th>
         </tr>
-        <?php foreach ($commentaires as $commentaire): ?>
-            <tr>
-                <td><?= $this->nettoyer($commentaire['com_auteur']) ?></td>
-                <td><time></time><?= $this->nettoyer($commentaire['com_date']) ?></time></td>
-                <td><?php echo $this->nettoyer($commentaire['chap_id']); ?></td>
-                <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
-                <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
+        <?php foreach ($commentaires as $commentaire):?>
+        <tr <?php if($commentaire['com_signalement']) echo "class='signalement'"?>>
+            <td><?= $this->nettoyer($commentaire['com_auteur']) ?></td>
+            <td><time><?= $this->nettoyer($commentaire['com_date']) ?></time></td>
+            <td><?php echo $this->nettoyer($commentaire['chap_id']); ?></td>
+            <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
+            <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
-                <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']. "/" . $commentaire['com_auteur']?>">
-                        <button type="button" class="btn btn-danger">Supprimer</button></a></td>
-            </tr>
-        <?php endforeach; ?>
+            <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']. "/" . $commentaire['com_auteur']?>">
+                    <button type="button" class="btn btn-danger">Supprimer</button></a></td>
+        </tr>
+        <?php endforeach;?>
     </table>
 </div>
 
