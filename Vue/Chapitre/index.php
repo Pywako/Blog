@@ -15,6 +15,8 @@
     <?php foreach ($commentaires as $commentaire): ?>
         <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
         <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
+        <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['chap_id']. "/" . $commentaire['id']?>">
+            <button type="button" class="btn btn-warning">Signaler</button></a>
     <?php endforeach; ?>
     <hr />
     <form method="post" action="chapitre/commenter">
