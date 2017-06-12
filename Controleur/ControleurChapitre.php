@@ -32,8 +32,8 @@ class ControleurChapitre extends Controleur {
     // Ajoute un commentaire sur un billet
     public function commenter() {
         $idChapitre = $this->requete->getParametre("id");
-        $auteur = $this->requete->getParametre("auteur");
-        $contenu = $this->requete->getParametre("contenu");
+        $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
+        $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
         $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
         
         // Exécution de l'action par défaut pour réafficher la liste des billets
