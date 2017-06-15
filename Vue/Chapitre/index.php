@@ -5,7 +5,7 @@
         <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['titre']) ?></h1>
         <time><?= $this->nettoyer($chapitre['date']) ?></time>
     </header>
-    <p><?= $this->nettoyer($chapitre['contenu']) ?></p>
+    <p><?= $chapitre['contenu'] ?></p>
 </article>
 <hr />
 <div class="commentaire">
