@@ -14,8 +14,7 @@ class ControleurAccueil extends Controleur {
     // Affiche la liste de tous les chapitres du blog
     public function index() {
         $chapitres = $this->chapitre->getChapitres();
-        $this->genererVue(array('chapitres' => $chapitres));
+        $session = $this->requete->getSession();
+        $this->genererVue(array('chapitres' => $chapitres, 'session' => $session));
     }
-
 }
-

@@ -12,10 +12,10 @@
     <header>
         <h1 id="titreReponses">Réponses à <?= $this->nettoyer($chapitre['titre']) ?></h1>
     </header>
-    <?php foreach ($commentaires as $commentaire): ?>
+    <?php foreach ($commentaires as $commentaire):?>
         <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
         <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
-        <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['chap_id']. "/" . $commentaire['id']?>">
+        <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['id']?>">
             <button type="button" class="btn btn-warning">Signaler</button></a>
     <?php endforeach; ?>
     <hr />
@@ -24,7 +24,7 @@
                required /><br />
         <textarea id="txtCommentaire" name="contenu" rows="4"
                   placeholder="Votre commentaire" required></textarea><br />
-        <input type="hidden" name="id" value="<?= $chapitre['id'] ?>" />
+        <input type="hidden" name="id" value="<?= $chapitre['id']?>" />
         <input type="submit" value="Commenter" />
     </form>
 </div>

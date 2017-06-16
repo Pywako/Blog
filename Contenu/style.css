@@ -20,12 +20,9 @@ body{
 .commentaire {
     margin: 10 px;
 }
-.msgErreur {
-    color: red;
-}
-.msgRetour {
-    color: green;
-}
 .signalement {
     color: orangered;
+}
+#alert{
+    display: none;
 }

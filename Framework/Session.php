@@ -48,7 +48,7 @@ class Session
      *
      * @param string $nom // Nom de l'attribut
      * @return string // Valeur de l'attribut
-     * @throws Exception // Attribut n'existe pas dans la session
+     * @throws \Exception // Attribut n'existe pas dans la session
      */
     public function getAttribut($nom)
     {
@@ -59,6 +59,37 @@ class Session
         else
         {
             throw new \Exception("Attribut '$nom' est absent de la session");
+        }
+    }
+
+    /**
+     * Fonction d'entrée de message de notification
+     * @param string $message
+     * @param string $type
+     */
+    public function setFlash($message, $type ='danger')
+    {
+        $_SESSION['flash'] = array(
+            'message'   =>$message,
+            'type'      =>$type
+        );
+    }
+
+    /**
+     * fonction permettant de vérifier la présence de la variable de session flash et d'afficher le
+     * message avec son type en HTML
+     */
+    public function flash()
+    {
+        if(isset($_SESSION['flash']))
+        {
+            ?>
+            <div id="alert" class="bg-<?php echo $_SESSION['flash']['type']?>">
+                <a class="close">x</a>
+                <?php echo $_SESSION['flash']['message']; ?>
+            </div>
+            <?php
+            unset($_SESSION['flash']);
         }
     }
 }

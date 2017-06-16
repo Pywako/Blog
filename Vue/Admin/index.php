@@ -26,15 +26,16 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
             <th>Signalement</th>
             <th>Actions</th>
         </tr>
-        <?php foreach ($commentaires as $commentaire):?>
+        <?php foreach ($commentaires as $commentaire):
+            $chap = $objChapitre->getChapitre($commentaire['chap_id']);?>
         <tr <?php if($commentaire['com_signalement']) echo "class='signalement'"?>>
             <td><?= $this->nettoyer($commentaire['com_auteur']) ?></td>
             <td><time><?= $this->nettoyer($commentaire['com_date']) ?></time></td>
-            <td><?php echo $this->nettoyer($commentaire['chap_id']); ?></td>
+            <td><?php echo $this->nettoyer($chap['numero']); ?></td>
             <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
             <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
-            <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']. "/" . $commentaire['com_auteur']?>">
+            <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']?>">
                     <button type="button" class="btn btn-danger">Supprimer</button></a></td>
         </tr>
         <?php endforeach;?>
@@ -59,9 +60,9 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
                 <td><?= $this->nettoyer($chapitre['date']) ?></td>
                 <td><?php echo $contenu = substr($chapitre['contenu'], 0, 100); ?></td>
                 <td><?= $this->nettoyer($chapitre['nbcom']) ?></td>
-                <td><a id="modifierChapitre" href="<?= "admin/modification/" . $chapitre['id']."/". $chapitre['numero']?>">
+                <td><a id="modifierChapitre" href="<?= "admin/modification/" . $chapitre['id']?>">
                         <button type="button" class="btn btn-info">Modifier</button></a><br>
-                    <a id="supprimerChapitre" href="<?= "admin/supprimerChapitre/" . $chapitre['id']."/". $chapitre['numero']?>">
+                    <a id="supprimerChapitre" href="<?= "admin/supprimerChapitre/" . $chapitre['id']?>">
                         <button type="button" class="btn btn-danger" >Supprimer</button></a></td>
             </tr>
         <?php endforeach; ?>
