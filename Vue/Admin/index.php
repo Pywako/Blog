@@ -26,11 +26,12 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
             <th>Signalement</th>
             <th>Actions</th>
         </tr>
-        <?php foreach ($commentaires as $commentaire):?>
+        <?php foreach ($commentaires as $commentaire):
+            $chap = $objChapitre->getChapitre($commentaire['chap_id']);?>
         <tr <?php if($commentaire['com_signalement']) echo "class='signalement'"?>>
             <td><?= $this->nettoyer($commentaire['com_auteur']) ?></td>
             <td><time><?= $this->nettoyer($commentaire['com_date']) ?></time></td>
-            <td><?php echo $this->nettoyer($commentaire['chap_id']); ?></td>
+            <td><?php echo $this->nettoyer($chap['numero']); ?></td>
             <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
             <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
