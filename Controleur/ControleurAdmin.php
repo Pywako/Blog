@@ -32,8 +32,9 @@ class ControleurAdmin extends ControleurSecurise
         $commentaires = $this->commentaire->getAllCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
         $session = $this->requete->getSession();
+        $objChapitre = $this->chapitre;
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
-            'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires));
+            'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
     }
 
     /**
@@ -97,8 +98,7 @@ class ControleurAdmin extends ControleurSecurise
     {
         $commentaireId = $this->requete->getParametre('id');
         $this->commentaire->supprimerCommentaire($commentaireId);
-        $unCommentaire = $this->commentaire->getOneCommentaire($commentaireId);
-        $commentaire = $unCommentaire->fetch();
+        $commentaire = $this->commentaire->getOneCommentaire($commentaireId);
         $contenuCommentaire = $commentaire['contenu'];
         $this->requete->getSession()->setflash("Le commentaire $contenuCommentaire a bien été supprimé.", "success");
         $this->rediriger("admin");

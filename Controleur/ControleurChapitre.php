@@ -48,8 +48,7 @@ class ControleurChapitre extends Controleur {
     }
     public function signaler() {
         $commentaireId = $this->requete->getParametre("id");
-        $unCommentaire = $this->commentaire->getOneCommentaire($commentaireId);
-        $commentaire = $unCommentaire->fetch();
+        $commentaire = $this->commentaire->getOneCommentaire($commentaireId);
         $this->commentaire->signaler($commentaireId);
         $this->requete->getSession()->setflash("Le commentaire a bien été signalé.", "success");
         // Exécution de l'action par défaut pour réafficher la liste des billets

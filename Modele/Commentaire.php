@@ -28,7 +28,7 @@ COM_signalement as com_signalement, chap_id as chap_id from T_COMMENTAIRE order 
         $sql = 'select COM_AUTEUR as com_auteur, COM_DATE as com_date, COM_CONTENU as com_contenu, 
 COM_signalement as com_signalement, chap_id as chap_id from T_COMMENTAIRE where COM_ID = ?';
         $oneCommentaire = $this->executerRequete($sql, array($idCommentaire));
-        return $oneCommentaire;
+        return $oneCommentaire->fetch();  // Accès à la première ligne de résultat
     }
 
     public function ajouterCommentaire($auteur, $contenu, $idChapitre) {
