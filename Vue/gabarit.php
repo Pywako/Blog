@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <base href="<?= $racineBlog ?>">
-        <link rel="stylesheet" href="Contenu/style.css">
+        <!-- Tinymce -->
         <script src="../../tinymce/js/tinymce/tinymce.min.js"></script>
         <script src="../../tinymce/js/tinymce/jquery.tinymce.min.js"></script>
         <script>tinymce.init({
@@ -25,14 +25,10 @@
                 "forecolor backcolor emoticons | restoredraft spellchecker"
             });</script>
 
-        <!-- Latest compiled and minified CSS -->
+        <!-- Latest compiled and minified CSS Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="Contenu/style.css">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <title><?= $titre ?></title>
     </head>
     <body>
@@ -56,8 +52,20 @@
 
             </footer>
         </div>
-    <!-- Javascript -->
+
+        <!-- Javascript -->
         <script src="../../jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/gabarit.js"></script>
+        <script>
+            $(function(){
+                var alert = $('#alert');
+                if (alert.length > 0) {
+                    alert.hide().slideDown(500);
+                    alert.find('.close').click(function(e){
+                     e.preventDefault();
+                     alert.slideUp();
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
