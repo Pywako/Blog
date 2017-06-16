@@ -1,1 +1,1 @@
-<p><?= $this->nettoyer($msgErreur) ?></p>
+<pre><?= $msgErreur ?></pre>
