@@ -27,7 +27,7 @@ class Session
      * @param string $nom // Attribut
      * @param $valeur // Valeur
      */
-    public function setAttribut(string $nom, $valeur)
+    public function setAttribut($nom, $valeur)
     {
         $_SESSION[$nom] = $valeur;
     }
@@ -48,7 +48,7 @@ class Session
      *
      * @param string $nom // Nom de l'attribut
      * @return string // Valeur de l'attribut
-     * @throws Exception // Attribut n'existe pas dans la session
+     * @throws \Exception // Attribut n'existe pas dans la session
      */
     public function getAttribut($nom)
     {

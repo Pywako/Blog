@@ -23,3 +23,6 @@ body{
 .signalement {
     color: orangered;
 }
+#alert{
+    display: none;
+}
