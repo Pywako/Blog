@@ -22,11 +22,18 @@ class ControleurChapitre extends Controleur {
 
     // Affiche les détails sur un chapitre
     public function index() {
-        $idChapitre = $this->requete->getParametre("id");
+        if(isset($_SESSION['id']))
+        {
+            $idChapitre = $this->requete->getSession()->getAttribut("id");
+        }
+        else
+        {
+            $idChapitre = $this->requete->getParametre("id");
+        }
         $chapitre = $this->chapitre->getChapitre($idChapitre);
         $commentaires = $this->commentaire->getCommentaires($idChapitre);
-        $msgRetour = $this->getMsgRetour();
-        $this->genererVue(array('chapitre' => $chapitre, 'commentaires' => $commentaires, 'msgRetour' => $msgRetour));
+        $session = $this->requete->getSession();
+        $this->genererVue(array('chapitre' => $chapitre, 'commentaires' => $commentaires, 'session' => $session));
     }
 
     // Ajoute un commentaire sur un billet
@@ -35,16 +42,18 @@ class ControleurChapitre extends Controleur {
         $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
         $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
         $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
-        
+        $this->requete->getSession()->setflash("Commentaire ajouté !", "success");
         // Exécution de l'action par défaut pour réafficher la liste des billets
         $this->executerAction("index");
     }
     public function signaler() {
-        $commentaireId = $this->requete->getParametre("numero");
+        $commentaireId = $this->requete->getParametre("id");
+        $unCommentaire = $this->commentaire->getOneCommentaire($commentaireId);
+        $commentaire = $unCommentaire->fetch();
         $this->commentaire->signaler($commentaireId);
-        $this->setMsgRetour("Le commentaire a bien été signalé.");
+        $this->requete->getSession()->setflash("Le commentaire a bien été signalé.", "success");
         // Exécution de l'action par défaut pour réafficher la liste des billets
-        $this->executerAction("index");
+        $this->rediriger("chapitre", "index", $commentaire['chap_id']);
     }
 }
 

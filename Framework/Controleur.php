@@ -76,9 +76,10 @@ abstract class Controleur
      * @param string $controleur Contrôleur
      * @param string $action Action Action
      */
-    protected function rediriger($controleur, $action = null)
+    protected function rediriger($controleur, $action = null, $id = null)
     {
         $racineBlog = Configuration::get("racineBlog", "/");
+        $this->requete->getSession()->setAttribut("id", $id);
         // Redirection vers l'url Racine_site/controleur/action
         header("Location:" . $racineBlog . $controleur . "/" . $action);
     }

@@ -11,8 +11,8 @@
         <meta charset="UTF-8">
         <base href="<?= $racineBlog ?>">
         <link rel="stylesheet" href="Contenu/style.css">
-        <script src="../jquery-3.2.1.min.js"></script>
-        <script src="../tinymce/js/tinymce/tinymce.min.js"></script>
+        <script src="../../tinymce/js/tinymce/tinymce.min.js"></script>
+        <script src="../../tinymce/js/tinymce/jquery.tinymce.min.js"></script>
         <script>tinymce.init({
                 selector:'.mytextarea',
                 width: 1000,
@@ -41,24 +41,14 @@
             <header>
                 <a href=""><h1 id="titreSites">Un billet pour l'Alaska</h1></a>
 
-                <!-- Message d'erreur -->
-                <?php if (isset($msgErreur)): ?>
-                    <p class="msgErreur"><?= $msgErreur ?></p>
-
-                <!-- Message de retour d'action -->
-                <?php endif;
-                if (isset($msgRetour)): ?>
-                    <p class="msgRetour"><?= $msgRetour ?></p>
-                <?php endif; ?>
-                
-                <p>Bienvenue !
-                    Pour accéder au tableau de bord c'est par <a href="admin">ici</a> </p>
+                <!-- Message de notification-->
+                <?php if(isset ($session)) { $session->flash(); };?>
+                <p>Bienvenue ! Pour accéder au tableau de bord c'est par <a href="admin">ici</a> </p>
             </header>
 
             <!-- Contenu -->
             <div id="contenu">
-                <?= $contenu ?>
-
+                <?= $contenu ;?>
             </div>
 
             <!-- Pied de page -->
@@ -66,6 +56,8 @@
 
             </footer>
         </div>
-
+    <!-- Javascript -->
+        <script src="../../jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/gabarit.js"></script>
     </body>
 </html>

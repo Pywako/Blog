@@ -100,6 +100,6 @@ class Routeur
     public function genererErreur(\Exception $exception)
     {
         $vue = new Vue('erreur');
-        $vue->generer(array('msgErreur' => $exception->getMessage()));
+        $vue->generer(array('msgErreur' => $exception));
     }
 }

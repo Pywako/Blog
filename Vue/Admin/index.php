@@ -34,7 +34,7 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
             <td><?= $this->nettoyer($commentaire['com_contenu']) ?></td>
             <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
-            <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']. "/" . $commentaire['com_auteur']?>">
+            <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']?>">
                     <button type="button" class="btn btn-danger">Supprimer</button></a></td>
         </tr>
         <?php endforeach;?>
@@ -59,9 +59,9 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
                 <td><?= $this->nettoyer($chapitre['date']) ?></td>
                 <td><?php echo $contenu = substr($chapitre['contenu'], 0, 100); ?></td>
                 <td><?= $this->nettoyer($chapitre['nbcom']) ?></td>
-                <td><a id="modifierChapitre" href="<?= "admin/modification/" . $chapitre['id']."/". $chapitre['numero']?>">
+                <td><a id="modifierChapitre" href="<?= "admin/modification/" . $chapitre['id']?>">
                         <button type="button" class="btn btn-info">Modifier</button></a><br>
-                    <a id="supprimerChapitre" href="<?= "admin/supprimerChapitre/" . $chapitre['id']."/". $chapitre['numero']?>">
+                    <a id="supprimerChapitre" href="<?= "admin/supprimerChapitre/" . $chapitre['id']?>">
                         <button type="button" class="btn btn-danger" >Supprimer</button></a></td>
             </tr>
         <?php endforeach; ?>

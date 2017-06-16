@@ -17,7 +17,8 @@ class ControleurConnexion extends Controleur
 
     public function index()
     {
-        $this->genererVue();
+        $session = $this->requete->getSession();
+        $this->genererVue(array('session' => $session));
     }
 
     public function connecter()
@@ -35,8 +36,8 @@ class ControleurConnexion extends Controleur
             }
             else
             {
-                $this->setMsgErreur('Login ou mot de passe incorrects');
-                $this->executerAction("index");
+                $this->requete->getSession()->setflash("Login ou mot de passe incorrects");
+                $this->rediriger("connexion");
             }
         }
         else

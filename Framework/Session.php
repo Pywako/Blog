@@ -67,7 +67,7 @@ class Session
      * @param string $message
      * @param string $type
      */
-    public function setFlash(string $message, string $type ='danger')
+    public function setFlash($message, $type ='danger')
     {
         $_SESSION['flash'] = array(
             'message'   =>$message,
@@ -84,7 +84,7 @@ class Session
         if(isset($_SESSION['flash']))
         {
             ?>
-            <div id="alert" class="alert bg-<?php echo $_SESSION['flash']['type']?>">
+            <div id="alert" class="bg-<?php echo $_SESSION['flash']['type']?>">
                 <a class="close">x</a>
                 <?php echo $_SESSION['flash']['message']; ?>
             </div>

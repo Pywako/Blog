@@ -31,9 +31,9 @@ class ControleurAdmin extends ControleurSecurise
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
         $commentaires = $this->commentaire->getAllCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
-        $msgRetour = $this->getMsgRetour();
+        $session = $this->requete->getSession();
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
-            'msgRetour' => $msgRetour, 'chapitres' => $chapitres, 'commentaires' => $commentaires));
+            'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires));
     }
 
     /**
@@ -43,14 +43,16 @@ class ControleurAdmin extends ControleurSecurise
     public function creation()
     {
         $numeroChapitre = $this->chapitre->getNumDernierChapitre() + 1;
-        $this->genererVue(array('numeroChapitre' =>$numeroChapitre));
+        $session = $this->requete->getSession();
+        $this->genererVue(array('numeroChapitre' =>$numeroChapitre, 'session' => $session));
 
     }
     public function modification()
     {
-        $chapitreId = $this->requete->getParametre("id");
+        $chapitreId = $this->requete->getParametre('id');
         $chapitre= $this->chapitre->getChapitre($chapitreId);
-        $this->genererVue(array('chapitre'=> $chapitre));
+        $session = $this->requete->getSession();
+        $this->genererVue(array('chapitre'=> $chapitre, 'session' => $session));
     }
 
     /**
@@ -64,8 +66,8 @@ class ControleurAdmin extends ControleurSecurise
         $titre = $this->requete->getParametre("titre");
         $contenu = $this->requete->getParametre("contenu");
         $this->chapitre->ajouterChapitre($numero, $titre, $contenu);
-        $this->setMsgRetour("Le chapitre $chapitreId a bien été publié.");
-        $this->executerAction("index");
+        $this->requete->getSession()->setflash("Le chapitre $chapitreId a bien été publié.", "success");
+        $this->rediriger("admin");
     }
 
     public function modifierChapitre()
@@ -75,8 +77,8 @@ class ControleurAdmin extends ControleurSecurise
         $titre = $this->requete->getParametre("titre");
         $contenu = $this->requete->getParametre("contenuChapitre");
         $this->chapitre->modifierChapitre($numero, $titre, $contenu, $chapitreId);
-        $this->setMsgRetour("Le chapitre $numero a bien été modifié.");
-        $this->executerAction("index");
+        $this->requete->getSession()->setflash("Le chapitre $numero a bien été modifié.", "success");
+        $this->rediriger("admin");
     }
 
     /**
@@ -86,19 +88,20 @@ class ControleurAdmin extends ControleurSecurise
     public function supprimerChapitre()
     {
         $chapitreId = $this->requete->getParametre("id");
-        $chapitreNumero = $this->requete->getParametre("numero");
         $this->chapitre->supprimerChapitre($chapitreId);
-        $this->setMsgRetour("Le chapitre $chapitreNumero a bien été supprimé.");
-        $this->executerAction("index");
+        $this->requete->getSession()->setflash("Le chapitre a bien été supprimé.", "success");
+        $this->rediriger("admin");
     }
 
     public function supprimerCommentaire()
     {
         $commentaireId = $this->requete->getParametre('id');
-        $auteur = $this->requete->getParametre('numero');
         $this->commentaire->supprimerCommentaire($commentaireId);
-        $this->setMsgRetour("Le commentaire de $auteur a bien été supprimé.");
-        $this->executerAction("index");
+        $unCommentaire = $this->commentaire->getOneCommentaire($commentaireId);
+        $commentaire = $unCommentaire->fetch();
+        $contenuCommentaire = $commentaire['contenu'];
+        $this->requete->getSession()->setflash("Le commentaire $contenuCommentaire a bien été supprimé.", "success");
+        $this->rediriger("admin");
     }
 
 }
