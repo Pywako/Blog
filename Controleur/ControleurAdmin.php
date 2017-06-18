@@ -97,11 +97,21 @@ class ControleurAdmin extends ControleurSecurise
     public function supprimerCommentaire()
     {
         $commentaireId = $this->requete->getParametre('id');
-        $this->commentaire->supprimerCommentaire($commentaireId);
         $commentaire = $this->commentaire->getOneCommentaire($commentaireId);
-        $contenuCommentaire = $commentaire['contenu'];
+        $this->commentaire->supprimerCommentaire($commentaireId);
+        $contenuCommentaire = $commentaire['com_contenu'];
         $this->requete->getSession()->setflash("Le commentaire $contenuCommentaire a bien été supprimé.", "success");
         $this->rediriger("admin");
     }
-
+    public function remiseAZero()
+    {
+        $commentaireId = $this->requete->getParametre('id');
+        $unCommentaire = $this->commentaire->getOneCommentaire($commentaireId);
+        $contenuCommentaire = $unCommentaire['com_contenu'];
+        $signalement = 0;
+        $this->commentaire->modifierCommentaire($contenuCommentaire, $signalement, $commentaireId);
+        $this->requete->getSession()->setflash("Les signalements du commentaire $contenuCommentaire ont bien été remis 
+        à zéro.", "success");
+        $this->rediriger("admin");
+    }
 }

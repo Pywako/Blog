@@ -36,7 +36,10 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
             <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
             <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']?>">
-                    <button type="button" class="btn btn-danger">Supprimer</button></a></td>
+                    <button type="button" class="btn btn-danger">Supprimer</button></a>
+                <a id="RAZCommentaire" href="<?= "admin/remiseAZero/" . $commentaire['com_id']?>">
+                    <button type="button" class="btn btn-primary">remise à 0</button></a>
+            </td>
         </tr>
         <?php endforeach;?>
     </table>
