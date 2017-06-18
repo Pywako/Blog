@@ -27,7 +27,7 @@ class Session
      * @param string $nom // Attribut
      * @param $valeur // Valeur
      */
-    public function setAttribut($nom, $valeur)
+    public function setAttribut(string $nom, $valeur)
     {
         $_SESSION[$nom] = $valeur;
     }
