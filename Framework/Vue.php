@@ -48,7 +48,7 @@ class Vue
             $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre,
                 'contenu' => $contenu, 'racineBlog' => $racineBlog, 'msgErreur' => $msgErreur));
         }
-        else if (isset($session))
+        else if (isset($donnees['session']))
         {
             $session = $donnees['session'];
             $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre,
