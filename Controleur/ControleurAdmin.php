@@ -26,17 +26,46 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function index()
     {
-        $chapitres = $this->chapitre->getChapitres();
         $nbChapitres =$this->chapitre->getNombreChapitres();
-        $nbCommentaires = $this->commentaire->getNombreCommentaires();
-        $commentaires = $this->commentaire->getAllCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
         $session = $this->requete->getSession();
+        $chapitres = $this->chapitre->getChapitres();
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        //$commentaires = $this->commentaire->getAllCommentaires();
+        //$commentaires = $this->affichageCommentaire();
+        //$page = $this->requete->getSession()->getAttribut("page");
+        $commentaires = $this->commentaire->getNCommentaire(" ",0,5);
         $objChapitre = $this->chapitre;
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
             'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
     }
 
+    public function affichageCommentaire()
+    {
+        //Nb total de commentaire
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        $nbPage = $nbCommentaires / 5; // Pagination
+        $page = 0;
+
+        // index de pagination
+        if ($nb_page < 1) // qu'une seule page de commentaire
+        {}
+        else if ($nb_page > 1)
+        {
+            for ($i=0; $i <= $nb_page; $i++ )
+            {
+                if($page == $i) // Page courrante
+                {
+                    echo '<span style="color:grey;">' . $i . '</span>';
+                }
+                else // Autre page
+                {
+                    echo ' <a href="admin">'.$i.'</a> ';
+                    $this->requete->getSession()->setAttribut("page", $i);
+                }
+            }
+        }
+    }
     /**
      * Fonction générant le panneau de création de chapitre
      *

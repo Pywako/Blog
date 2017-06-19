@@ -43,7 +43,12 @@ class Vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
         // On définit une variable locale accessible par la vue pour la racine du blog
         $racineBlog = Configuration::get("racineBlog", "/");
-        if (isset($donnees['session']))
+        if (isset($msgErreur)){
+            $msgErreur = $donnees;
+            $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre,
+                'contenu' => $contenu, 'racineBlog' => $racineBlog, 'msgErreur' => $msgErreur));
+        }
+        else if (isset($session))
         {
             $session = $donnees['session'];
             $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre,
@@ -51,9 +56,8 @@ class Vue
         }
         else
         {
-            $msgErreur = $donnees;
             $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre,
-                'contenu' => $contenu, 'racineBlog' => $racineBlog, 'msgErreur' => $msgErreur));
+                'contenu' => $contenu, 'racineBlog' => $racineBlog));
         }
         // Génération du gabarit commun utilisant la partie spécifique
         echo $vue; // Affiche la vue générée

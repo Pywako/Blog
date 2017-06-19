@@ -19,11 +19,14 @@ abstract class Modele
      * Exécution de la requête sql
      *
      * @param $sql // Requête sql
-     * @param null $params // Paramètres de la requête
+     * @param null|array $params // Paramètres de la requête
      * @return PDOStatement // Résultats de la requête
      */
-    protected function executerRequete($sql, $params = null)
+    protected function executerRequete($sql, $params = null, $offset = null, $limit = null)
     {
+        if(isset($offset) && isset($limit))
+        {
+        }
         if ($params == null)
         {
             $resultat = self::getBdd()->query($sql); //Execution
@@ -33,6 +36,15 @@ abstract class Modele
             $resultat = self::getBdd()->prepare($sql); // Préparation
             $resultat->execute($params);
         }
+        return $resultat;
+    }
+    protected function bindExecuterRequete($sql, $params, $offset, $limit)
+    {
+        $sql .= "? LIMIT :offset, :limit";
+        $resultat = self::getBdd()->prepare($sql); // Préparation
+        $resultat->bindParam(':offset', $offset, \PDO::PARAM_INT);
+        $resultat->bindParam(':limit', $limit, \PDO::PARAM_INT);
+        $resultat->execute($params);
         return $resultat;
     }
 
