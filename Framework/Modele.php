@@ -26,6 +26,24 @@ abstract class Modele
     {
         if(isset($offset) && isset($limit))
         {
+            if(empty($params) != null)
+            {
+                $sql .= " LIMIT :offset, :limit";
+                $resultat = self::getBdd()->prepare($sql); // Préparation
+                $resultat->bindParam(':offset', $offset, \PDO::PARAM_INT);
+                $resultat->bindParam(':limit', $limit, \PDO::PARAM_INT);
+                $resultat->execute($params);
+                return $resultat;
+            }
+            else
+            {
+                $sql .= " LIMIT :offset, :limit";
+                $resultat = self::getBdd()->prepare($sql); // Préparation
+                $resultat->bindParam(':offset', $offset, \PDO::PARAM_INT);
+                $resultat->bindParam(':limit', $limit, \PDO::PARAM_INT);
+                $resultat->execute();
+                return $resultat;
+            }
         }
         if ($params == null)
         {
@@ -36,15 +54,6 @@ abstract class Modele
             $resultat = self::getBdd()->prepare($sql); // Préparation
             $resultat->execute($params);
         }
-        return $resultat;
-    }
-    protected function bindExecuterRequete($sql, $params, $offset, $limit)
-    {
-        $sql .= "? LIMIT :offset, :limit";
-        $resultat = self::getBdd()->prepare($sql); // Préparation
-        $resultat->bindParam(':offset', $offset, \PDO::PARAM_INT);
-        $resultat->bindParam(':limit', $limit, \PDO::PARAM_INT);
-        $resultat->execute($params);
         return $resultat;
     }
 
