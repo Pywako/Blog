@@ -39,7 +39,17 @@
         <!------------------------ Message de notification ------------------------->
 
         <?php if (isset ($session)) {
-            $session->flash();
+            $flash = $session->getFlash();
+            if(isset($_SESSION['flash']))
+            {
+                ?>
+                <div id="alert" class="bg-<?php echo $flash['type'] ?> header">
+                    <a class="close">x</a>
+                    <?php echo $flash['message']; ?>
+                </div>
+                <?php
+                unset($_SESSION['flash']);
+            }
         }; ?>
         <p class="header">Bienvenue ! Pour accéder au tableau de bord c'est par <a href="admin">ici</a></p>
     </header>
@@ -59,9 +69,8 @@
 
 <!------------------------------------------ Javascript ------------------------------------------>
 
-
 <script>
-    $('#document').ready(function () {
+    $(function () {
 
         // Animation Flash message
         var alert = $('#alert');
@@ -72,7 +81,6 @@
                 alert.slideUp();
             });
         }
-
         // Animation barre de navigation
         var navbar = $('#iconeNavigation');
         navbar.click(function(){
