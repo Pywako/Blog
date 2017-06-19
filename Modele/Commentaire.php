@@ -38,7 +38,7 @@ COM_SIGNALEMENT as com_signalement, CHAP_ID as chap_id from T_COMMENTAIRE where 
     {
         $sql = 'SELECT com_id AS com_id, com_auteur AS com_auteur, com_date AS com_date, com_contenu AS com_contenu, 
 com_signalement AS com_signalement, chap_id AS chap_id FROM t_commentaire ORDER BY com_signalement DESC, com_id DESC';
-        $resultat = $this->bindExecuterRequete($sql, array($params), $offset, $limit);
+        $resultat = $this->executerRequete($sql, array($params), $offset, $limit);
         if($resultat->rowCount() > 0 )
         {
             return $resultat;
