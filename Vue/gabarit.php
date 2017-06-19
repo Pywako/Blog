@@ -37,11 +37,10 @@
         </div>
         <!------------------------ Message de notification ------------------------->
 
-        <?php if (isset ($session)) {
+        <?php if (isset($session)) {
             $flash = $session->getFlash();
             if(isset($_SESSION['flash']))
-            {
-                ?>
+            {?>
                 <div id="alert" class="bg-<?php echo $flash['type'] ?> header">
                     <a class="close">x</a>
                     <?php echo $flash['message']; ?>
@@ -69,8 +68,7 @@
 <!------------------------------------------ Javascript ------------------------------------------>
 
 <script>
-    $(function () {
-
+    $(function(){
         // Animation Flash message
         var alert = $('#alert');
         if (alert.length > 0) {
@@ -81,10 +79,9 @@
             });
         }
         // Animation barre de navigation
-        var navbar = $('#iconeNavigation');
+        /*var navbar = $('#iconeNavigation');
         navbar.click(function(){
-
-        });
+        });*/
     });
 </script>
 </body>
