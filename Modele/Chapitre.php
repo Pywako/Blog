@@ -34,6 +34,15 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
             throw new \Exception("Aucun chapitre ne correspond à l'identifiant '$idChapitre'");
     }
 
+    public function getDernierChapitre(){
+        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID = (select max(CHAP_ID) from T_CHAPITRE )';
+        $dernierChapitre = $this->executerRequete($sql);
+        if ($dernierChapitre->rowCount() > 0)
+            return $dernierChapitre->fetch();  // Accès à la première ligne de résultat
+        else
+            throw new \Exception("Aucun chapitre dans la bdd");
+    }
     /**
      * Renvoie le nombre total de chapitres
      *
