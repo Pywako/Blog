@@ -82,11 +82,14 @@ section{
     margin-right: 50px;
 }
 .commentaire {
-    margin: 10 px;
+    margin: 10px;
 }
 .signalement {
     color: orangered;
 }
 footer{
     text-align: center;
+}
+#alert{
+    display: none;
 }
