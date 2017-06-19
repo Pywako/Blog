@@ -4,22 +4,89 @@ html, body {
 
 body{
     color: #333333;
+    margin: 0 auto;
+    min-width: 320px;
+    min-height: 480px;
+    font-family: Brushtp, Calligraffiti, Candara;
 }
+/*Police de caractère*/
+@font-face{
+    font-family: 'Brushtp';
+    src: url('BRUSHSTP/BRUSHSTP.eot');
+    url('BRUSHSTP/BRUSHSTP.woff') format('woff'),
+    url('BRUSHSTP/BRUSHSTP.ttf') format('truetype'),
+    url('BRUSHSTP/BRUSHSTP.svg#webfont') format('svg');
+}
+@font-face{
+    font-family: 'Calligraffiti';
+    src: url('Calligraffiti/Calligraffiti.eot');
+    url('Calligraffiti/Calligraffiti.woff') format('woff'),
+    url('Calligraffiti/Calligraffiti.ttf') format('truetype'),
+    url('Calligraffiti/Calligraffiti.svg#webfont') format('svg');
+}
+/* Page d'accueil*/
 #titreSites{
-    text-align: center;
+
 }
 #global{
-    margin: 150px;
+    /*margin-left: 50px;
+    margin-right: 50px;*/
 }
+#iconeNavigation{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#headerAccueil{
+    height: 350px;
+    display: flex;
+    justify-content: center;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#headerIntroduction{
+    margin-bottom: 50px;
+}
+#introduction{
+    font-size: 2.1em;
+}
+#btnCommencer{
+    /*text-align: center;*/
+}
+.header{
+    /*text-align: center;*/
+    justify-content: center;
+    align-items: center;
+}
+section{
+    text-align: center;
+    margin: 100px 20px 100px 20px;
+}
+
 .titreChapitre, #titreReponses{
+    text-align: center;
+    justify-content: center;
     color: #000000;
 }
 .chapitre{
     text-align: justify;
+    justify-content: space-around;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+#contenu{
+    margin-left: 50px;
+    margin-right: 50px;
 }
 .commentaire {
     margin: 10 px;
 }
 .signalement {
     color: orangered;
+}
+footer{
+    text-align: center;
 }

@@ -84,7 +84,7 @@ class Session
         if(isset($_SESSION['flash']))
         {
             ?>
-            <div id="alert" class="bg-<?php echo $_SESSION['flash']['type']?>">
+            <div id="alert" class="bg-<?php echo $_SESSION['flash']['type'] ?> header">
                 <a class="close">x</a>
                 <?php echo $_SESSION['flash']['message']; ?>
             </div>
