@@ -2,7 +2,6 @@
 /**
 Page d'écriture et modification du chapitre
  */
-
     $this->titre = "Billet pour l'Alaska - Ecriture";
     ?>
     <header>
@@ -21,3 +20,18 @@ Page d'écriture et modification du chapitre
     </textarea>
         <input type="submit" value = "envoyer">
     </form>
+
+<!-------------------------------- Tinymce -------------------------------->
+
+<script src="../../tinymce/js/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({
+        selector: '.mytextarea',
+        width: 1000,
+        height: 300,
+        plugins: "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker " +
+        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking " +
+        "save table contextmenu directionality emoticons template paste textcolor autosave",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright " +
+        "alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | " +
+        "forecolor backcolor emoticons | restoredraft spellchecker"
+    });</script>
