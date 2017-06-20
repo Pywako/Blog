@@ -96,6 +96,17 @@ class ControleurAdmin extends ControleurSecurise
         $this->rediriger("admin");
     }
 
+    public function commentaires()
+    {
+        $session = $this->requete->getSession();
+        $chapitres = $this->chapitre->getChapitres();
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        $commentaires = $this->commentaire->getAllCommentaires();
+        $objChapitre = $this->chapitre;
+        $this->genererVue(array('nbCommentaires' => $nbCommentaires, 'session' => $session,
+            'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
+    }
+
     public function supprimerCommentaire()
     {
         $commentaireId = $this->requete->getParametre('id');

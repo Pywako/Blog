@@ -43,6 +43,7 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
         </tr>
         <?php endforeach;?>
     </table>
+    <a href="admin/commentaires">Voir tous les commentaires</a>
 </div>
 
 <h3>Liste des chapitres</h3>
@@ -61,7 +62,7 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
                 <td><?= $chapitre['numero'] ?></td>
                 <td><?= $this->nettoyer($chapitre['titre']) ?></td>
                 <td><?= $this->nettoyer($chapitre['date']) ?></td>
-                <td><?php echo $contenu = substr($chapitre['contenu'], 0, 100); ?></td>
+                <td><?php echo $contenu = substr($chapitre['contenu'], 0, 300); ?></td>
                 <td><?= $this->nettoyer($chapitre['nbcom']) ?></td>
                 <td><a id="modifierChapitre" href="<?= "admin/modification/" . $chapitre['id']?>">
                         <button type="button" class="btn btn-info" title="modifier" alt="modifier"><span class="glyphicon glyphicon-pencil"></span></span></button></a><br>
