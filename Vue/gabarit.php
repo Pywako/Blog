@@ -33,7 +33,7 @@
 
         <div class="col-lg-12">
             <a href="" id="titreSites" class="header">
-                <h1>Un billet pour l'Alaska</h1></a>
+                <h1><?php echo $titre?></h1></a>
         </div>
         <!------------------------ Message de notification ------------------------->
 
