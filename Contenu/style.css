@@ -73,20 +73,28 @@ section{
 }
 .chapitre{
     text-align: justify;
-    justify-content: space-around;
     padding-right: 50px;
     padding-left: 50px;
 }
 #contenu{
+    text-align: center;
+    align-items: center;
     margin-left: 50px;
     margin-right: 50px;
 }
 .commentaire {
-    margin: 10 px;
+    text-align: left;
+    margin: 20px;
 }
 .signalement {
     color: orangered;
 }
 footer{
+    text-align: center;
+}
+#alert{
+    display: none;
+}
+th{
     text-align: center;
 }

@@ -26,12 +26,14 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function index()
     {
-        $chapitres = $this->chapitre->getChapitres();
         $nbChapitres =$this->chapitre->getNombreChapitres();
-        $nbCommentaires = $this->commentaire->getNombreCommentaires();
-        $commentaires = $this->commentaire->getAllCommentaires();
         $login = $this->requete->getSession()->getAttribut("login");
         $session = $this->requete->getSession();
+        $chapitres = $this->chapitre->getChapitres();
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        $offset = 0;
+        $limit = 5;
+        $commentaires = $this->commentaire->getNCommentaire("", $offset, $limit);
         $objChapitre = $this->chapitre;
         $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
             'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
@@ -92,6 +94,17 @@ class ControleurAdmin extends ControleurSecurise
         $this->chapitre->supprimerChapitre($chapitreId);
         $this->requete->getSession()->setflash("Le chapitre a bien été supprimé.", "success");
         $this->rediriger("admin");
+    }
+
+    public function commentaires()
+    {
+        $session = $this->requete->getSession();
+        $chapitres = $this->chapitre->getChapitres();
+        $nbCommentaires = $this->commentaire->getNombreCommentaires();
+        $commentaires = $this->commentaire->getAllCommentaires();
+        $objChapitre = $this->chapitre;
+        $this->genererVue(array('nbCommentaires' => $nbCommentaires, 'session' => $session,
+            'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
     }
 
     public function supprimerCommentaire()

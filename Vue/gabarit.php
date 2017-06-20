@@ -12,7 +12,6 @@
     <base href="<?= $racineBlog ?>">
     <script src="../../jquery-3.2.1.min.js"></script>
 
-
     <!------------ Latest compiled and minified CSS Bootstrap ------------>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -34,15 +33,14 @@
 
         <div class="col-lg-12">
             <a href="" id="titreSites" class="header">
-                <h1>Un billet pour l'Alaska</h1></a>
+                <h1><?php echo $titre?></h1></a>
         </div>
         <!------------------------ Message de notification ------------------------->
 
-        <?php if (isset ($session)) {
+        <?php if (isset($session)) {
             $flash = $session->getFlash();
             if(isset($_SESSION['flash']))
-            {
-                ?>
+            {?>
                 <div id="alert" class="bg-<?php echo $flash['type'] ?> header">
                     <a class="close">x</a>
                     <?php echo $flash['message']; ?>
@@ -70,8 +68,7 @@
 <!------------------------------------------ Javascript ------------------------------------------>
 
 <script>
-    $(function () {
-
+    $(function(){
         // Animation Flash message
         var alert = $('#alert');
         if (alert.length > 0) {
@@ -82,10 +79,9 @@
             });
         }
         // Animation barre de navigation
-        var navbar = $('#iconeNavigation');
+        /*var navbar = $('#iconeNavigation');
         navbar.click(function(){
-
-        });
+        });*/
     });
 </script>
 </body>

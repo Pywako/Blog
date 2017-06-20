@@ -23,7 +23,7 @@ Page d'écriture et modification du chapitre
 
 <!-------------------------------- Tinymce -------------------------------->
 
-<script src="../../tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="../../../tinymce/js/tinymce/tinymce.min.js"></script>
 <script>tinymce.init({
         selector: '.mytextarea',
         width: 1000,
