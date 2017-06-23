@@ -37,3 +37,18 @@ Ce blog comporte <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).
         <?php endforeach;?>
     </table>
 </div>
+<p class="page" >Page(s) :
+    <?php
+    for($i=1; $i<=$nbPage; $i++)
+    {
+        if($i == $pageActuelle)
+        {
+            echo '<span style="color:grey;"> '. $i .' </span>';
+        }
+        else
+        {
+            echo ' <a href="admin/commentaires/page/'. $i . '"> ' . $i . ' </a>';
+        }
+    }
+    ?>
+</p>

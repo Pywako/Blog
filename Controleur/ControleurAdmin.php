@@ -96,15 +96,62 @@ class ControleurAdmin extends ControleurSecurise
         $this->rediriger("admin");
     }
 
+    /**
+     * Fonction générant la page d'administration des commentaires
+     */
     public function commentaires()
     {
-        $session = $this->requete->getSession();
-        $chapitres = $this->chapitre->getChapitres();
+        $session        = $this->requete->getSession();
+        $chapitres      = $this->chapitre->getChapitres();
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
-        $commentaires = $this->commentaire->getAllCommentaires();
-        $objChapitre = $this->chapitre;
-        $this->genererVue(array('nbCommentaires' => $nbCommentaires, 'session' => $session,
-            'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
+        $objChapitre    = $this->chapitre;
+        $commentaires   = $this->pagination()['commentaires'];
+        $nbPage         = $this->pagination()['nbPage'];
+        $pageActuelle   = $this->pagination()['pageActuelle'];
+        $this->genererVue(array(
+            'nbCommentaires'=> $nbCommentaires,
+            'session'       => $session,
+            'chapitres'     => $chapitres,
+            'commentaires'  => $commentaires,
+            'nbPage'        => $nbPage,
+            'objChapitre'   => $objChapitre,
+            'pageActuelle'  => $pageActuelle));
+    }
+
+    /**
+     * Gestion de la pagination des commentaires
+     *
+     * @return array pagination contenant
+     *      les commentaires choisi (10 par page)
+     *      le nombre de page
+     *      la page actuelle
+     */
+    public function pagination()
+    {
+        $nbCommentaires         = $this->commentaire->getNombreCommentaires();
+        $nbcommentaireParPage   = 10; //= limit
+        $nbPage = ceil($nbCommentaires/$nbcommentaireParPage);
+        $page   = $this->requete->getParametre("page");
+        if (isset($page))
+        {
+            $pageActuelle = intval($page);
+            if($pageActuelle > $nbPage)
+            {
+                $pageActuelle = $nbPage;
+            }
+        }
+        else
+        {
+            $pageActuelle   = 1;
+        }
+        $premierCommentaire = ($pageActuelle-1) * $nbcommentaireParPage;
+        $commentaires       = $this->commentaire->getNCommentaire("", $premierCommentaire, $nbcommentaireParPage);
+        $pagination         = array (
+            'commentaires'  => $commentaires,
+            'nbPage'        => $nbPage,
+            'pageActuelle'  => $pageActuelle
+        );
+        return $pagination;
     }
 
     public function supprimerCommentaire()
