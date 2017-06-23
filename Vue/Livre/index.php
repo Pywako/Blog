@@ -1,4 +1,22 @@
 <?php $this->titre = "Billet pour l'Alaska";
+?>
+<!------------ Table des matières-------------->
+<div id="tableMatiere">
+    <table>
+        <tr>
+            <th>Table des matières</th>
+        </tr>
+        <?php foreach ($titres as $titre):?>
+        <tr>
+            <td><a href="<?= "Chapitre/index/" . $this->nettoyer($titre['id']) ?>">
+                    <h2><?= $this->nettoyer($titre['titre']) ?></h2>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach;?>
+    </table>
+</div>
+<?php
 $url = "/commentaires/page/";
 include "Vue/pagination.php"?>
 

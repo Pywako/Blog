@@ -14,13 +14,15 @@ class ControleurLivre extends Controleur {
     // Affiche la liste de tous les chapitres du blog
     public function index() {
         $chapitres      = $this->pagination()['chapitres'];
+        $titres         = $this->chapitre->getTitres();
         $session        = $this->requete->getSession();
         $nbPage         = $this->pagination()['nbPage'];
         $pageActuelle   = $this->pagination()['pageActuelle'];
         $this->genererVue(array(
             'chapitres' => $chapitres,
-            'session' => $session,
-            'nbPage'        => $nbPage,
+            'titres'    => $titres,
+            'session'   => $session,
+            'nbPage'    => $nbPage,
             'pageActuelle'  => $pageActuelle));
     }
     /**
@@ -50,7 +52,7 @@ class ControleurLivre extends Controleur {
             $pageActuelle   = 1;
         }
         $premierChapitre = ($pageActuelle-1) * $nbChapitreParPage;
-        $chapitres       = $this->chapitre->getNCchapitres("", $premierChapitre, $nbChapitreParPage);
+        $chapitres       = $this->chapitre->getNChapitres("", $premierChapitre, $nbChapitreParPage);
         $pagination         = array (
             'chapitres'  => $chapitres,
             'nbPage'        => $nbPage,

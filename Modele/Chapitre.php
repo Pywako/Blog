@@ -44,7 +44,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID = (se
             throw new \Exception("Aucun chapitre dans la bdd");
     }
 
-    public function getNCchapitres($params, $offset, $limit)
+    public function getNChapitres($params, $offset, $limit)
     {
         $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
 CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
@@ -53,6 +53,12 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
             return $resultat;
         } else
             throw new \Exception("offset et limite mal définies");
+    }
+
+    public function getTitres() {
+        $sql = 'select CHAP_TITRE as titre, CHAP_ID as id from T_CHAPITRE order by CHAP_ID desc';
+        $titres = $this->executerRequete($sql);
+        return $titres;
     }
     /**
      * Renvoie le nombre total de chapitres

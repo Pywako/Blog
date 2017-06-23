@@ -105,3 +105,8 @@ th{
 #adminCommentaire{
     margin-bottom: 25px;
 }
+#tableMatiere{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
