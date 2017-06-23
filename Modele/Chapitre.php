@@ -43,6 +43,17 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID = (se
         else
             throw new \Exception("Aucun chapitre dans la bdd");
     }
+
+    public function getNCchapitres($params, $offset, $limit)
+    {
+        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
+CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
+        $resultat = $this->executerRequete($sql, array($params), $offset, $limit);
+        if ($resultat->rowCount() > 0) {
+            return $resultat;
+        } else
+            throw new \Exception("offset et limite mal définies");
+    }
     /**
      * Renvoie le nombre total de chapitres
      *

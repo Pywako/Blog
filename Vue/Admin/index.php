@@ -43,8 +43,7 @@ Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
         </tr>
         <?php endforeach;?>
     </table>
-    <a href="admin/commentaires">Voir tous les commentaires</a>
-</div>
+    <a href="admin/commentaires/page/1">Voir tous les commentaires</a></div>
 
 <h3>Liste des chapitres</h3>
 <div class="table-responsive">

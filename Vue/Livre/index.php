@@ -1,4 +1,6 @@
-<?php $this->titre = "Billet pour l'Alaska"; ?>
+<?php $this->titre = "Billet pour l'Alaska";
+$url = "/commentaires/page/";
+include "Vue/pagination.php"?>
 
 <?php foreach ($chapitres as $chapitre):
     ?>
@@ -12,4 +14,6 @@
         <p><?= $chapitre['contenu'] ?></p>
     </article>
     <hr />
-<?php endforeach; ?>
+<?php endforeach;
+include "Vue/pagination.php"?>
+

@@ -98,3 +98,10 @@ footer{
 th{
     text-align: center;
 }
+.page{
+    text-align: right;
+    font-size: 1.3em;
+}
+#adminCommentaire{
+    margin-bottom: 25px;
+}

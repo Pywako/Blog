@@ -10,7 +10,7 @@ $this->titre = "Billet pour l'Alaska ";?>
         <p id="introduction">Venez voyager le temps d'une parenthèse dans un autre monde.<br>
             De nouvelles terres à explorer, de nouveaux horizon à découvrir.<br>
             Me suivrez vous?</p>
-        <a href="Livre" id="btnCommencer"><button class="btn btn-primary">Commencer la lecture</button></a>
+        <a href="Livre/index/page/1" id="btnCommencer"><button class="btn btn-primary">Commencer la lecture</button></a>
 
     </header>
     <section>
