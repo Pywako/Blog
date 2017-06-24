@@ -1,9 +1,11 @@
-<?php $this->titre = "Billet pour l'Alaska - Connexion" ?>
+<?php $this->titre = "Billet pour l'Alaska"."<br>"."Connexion" ?>
 
-<p>Bonjour, veillez passer le contrôle de sécurité : </p>
-<form action="connexion/connecter" method="post" >
-    <input name="login" type="text" placeholder="Entrez votre login" required autofocus>
-    <input name="mdp" type="password" placeholder="Entrez votre mot de passe" required>
-    <button type="submit" >Connexion</button>
+<form action="connexion/connecter" method="post" class="form-signin">
+    <h3 class="form-signin-heading">Identification :</h3>
+    <label for="login" class="sr-only">Login</label>
+    <input name="login" id="login" type="text" class="form-control" placeholder="Entrez votre login" required autofocus>
+    <label for="mdp" class="sr-only">Mot de passe</label>
+    <input name="mdp" id="mdp" type="password" class="form-control" placeholder="Entrez votre mot de passe" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >Connexion</button>
 </form>
 

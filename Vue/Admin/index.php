@@ -5,8 +5,7 @@
  * Date: 18/05/2017
  * Time: 10:07
  */
-$this->titre = "Billet pour l'Alaska - Administration";?>
-<h2>Administration</h2>
+$this->titre = "Billet pour l'Alaska"."<br>"."Administration";?>
 
 Bienvenue, <?= $this->nettoyer($login) ?> !
 

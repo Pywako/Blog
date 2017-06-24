@@ -1,4 +1,4 @@
-<?php $this->titre = "Billet pour l'Alaska - Jean Forteroche - Chapitre " . $this->nettoyer($chapitre['numero']) . " - " . $this->nettoyer($chapitre['titre']); ?>
+<?php $this->titre = "Billet pour l'Alaska ". "<br>" . "Chapitre " . $this->nettoyer($chapitre['numero']);?>
 
 <article class="chapitre">
     <header>

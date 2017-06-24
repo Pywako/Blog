@@ -1,15 +1,15 @@
 <?php $this->titre = "Billet pour l'Alaska";
 ?>
 <!------------ Table des matières-------------->
-<div id="tableMatiere">
-    <table>
+<div id="tableMatiere" class="jumbotron text-center">
+    <table class="container">
         <tr>
-            <th>Table des matières</th>
+            <th><h2>Table des matières</h2></th>
         </tr>
-        <?php foreach ($titres as $titre):?>
+        <?php foreach ($titres as $key=>$titre):?>
         <tr>
             <td><a href="<?= "Chapitre/index/" . $this->nettoyer($titre['id']) ?>">
-                    <h2><?= $this->nettoyer($titre['titre']) ?></h2>
+                    <h3 class="text-left display-4"><span class="col-sm-3">Chapitre <?php echo $key+1 .'</span> - <span class="col-sm-9">' . $this->nettoyer($titre['titre']) ?></span></h3>
                 </a>
             </td>
         </tr>

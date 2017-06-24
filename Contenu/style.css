@@ -1,112 +1,124 @@
-html, body {
-    height: 100%;
-}
-
-body{
-    color: #333333;
-    margin: 0 auto;
-    min-width: 320px;
-    min-height: 480px;
-    font-family: Brushtp, Calligraffiti, Candara;
-}
-/*Police de caractère*/
 @font-face{
     font-family: 'Brushtp';
     src: url('BRUSHSTP/BRUSHSTP.eot');
-    url('BRUSHSTP/BRUSHSTP.woff') format('woff'),
-    url('BRUSHSTP/BRUSHSTP.ttf') format('truetype'),
-    url('BRUSHSTP/BRUSHSTP.svg#webfont') format('svg');
+url('BRUSHSTP/BRUSHSTP.woff') format('woff'),
+url('BRUSHSTP/BRUSHSTP.ttf') format('truetype'),
+url('BRUSHSTP/BRUSHSTP.svg#webfont') format('svg');
 }
 @font-face{
     font-family: 'Calligraffiti';
     src: url('Calligraffiti/Calligraffiti.eot');
-    url('Calligraffiti/Calligraffiti.woff') format('woff'),
-    url('Calligraffiti/Calligraffiti.ttf') format('truetype'),
-    url('Calligraffiti/Calligraffiti.svg#webfont') format('svg');
-}
-/* Page d'accueil*/
-#titreSites{
-
-}
-#global{
-    /*margin-left: 50px;
-    margin-right: 50px;*/
-}
-#iconeNavigation{
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-#headerAccueil{
-    height: 350px;
-    display: flex;
-    justify-content: center;
-}
-header{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-#headerIntroduction{
-    margin-bottom: 50px;
-}
-#introduction{
-    font-size: 2.1em;
-}
-#btnCommencer{
-    /*text-align: center;*/
-}
-.header{
-    /*text-align: center;*/
-    justify-content: center;
-    align-items: center;
-}
-section{
-    text-align: center;
-    margin: 100px 20px 100px 20px;
+url('Calligraffiti/Calligraffiti.woff') format('woff'),
+url('Calligraffiti/Calligraffiti.ttf') format('truetype'),
+url('Calligraffiti/Calligraffiti.svg#webfont') format('svg');
 }
 
-.titreChapitre, #titreReponses{
-    text-align: center;
-    justify-content: center;
-    color: #000000;
+.roman{
+    text-align: justify;
 }
+h1{
+    text-align: center;
+}
+.introduction{
+    font-size: larger;
+}
+
+/* Signin*/
+body {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-family-base: Brushtp, Calligraffiti, Candara;
+    /*background-color: #eee;*/
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+/*Justified_nav*/
+.footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+/*.navbar {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7),to(#eee));
+    background-image: -webkit-linear-gradient(top, #f7f7f7 0%,#eee 100%);
+    background-image: -o-linear-gradient(top, #f7f7f7 0%,#eee 100%);
+    background-image: linear-gradient(to bottom, #f7f7f7 0%,#eee 100%);
+    border: 1px solid #e5e5e5;
+}*/
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .navbar-nav .nav-item {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+    }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .masthead,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/*chapitre*/
 .chapitre{
     text-align: justify;
-    padding-right: 50px;
-    padding-left: 50px;
-}
-#contenu{
-    text-align: center;
-    align-items: center;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-.commentaire {
-    text-align: left;
-    margin: 20px;
-}
-.signalement {
-    color: orangered;
-}
-footer{
-    text-align: center;
-}
-#alert{
-    display: none;
-}
-th{
-    text-align: center;
-}
-.page{
-    text-align: right;
-    font-size: 1.3em;
-}
-#adminCommentaire{
-    margin-bottom: 25px;
-}
-#tableMatiere{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
 }
