@@ -11,11 +11,22 @@ class Chapitre extends Modele {
      * 
      * @return PDOStatement La liste des billets
      */
-    public function getChapitres() {
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
+    public function getChapitres()
+    {
+        $sql = 'SELECT 
+          chap_id AS id, 
+          chap_numero AS numero, 
+          chap_titre AS titre, 
+          chap_date AS date, 
+          chap_contenu AS contenu, 
+          chap_nbcom AS nbcom 
+          FROM t_chapitre ORDER BY chap_id DESC';
         $chapitres = $this->executerRequete($sql);
-        return $chapitres;
+        if ($chapitres->rowCount() > 0)
+            return $chapitres;
+        // Accès à la première ligne de résultat
+        else
+            throw new \Exception("Aucun chapitre");
     }
 
     /** Renvoie les informations sur un chapitre
@@ -25,8 +36,14 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      * @throws Exception Si l'identifiant du billet est inconnu
      */
     public function getChapitre($idChapitre) {
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
+        $sql = 'select 
+          chap_id AS id, 
+          chap_numero AS numero, 
+          chap_titre AS titre, 
+          chap_date AS date, 
+          chap_contenu AS contenu, 
+          chap_nbcom AS nbcom 
+          FROM t_chapitre WHERE chap_id=?';
         $chapitre = $this->executerRequete($sql, array($idChapitre));
         if ($chapitre->rowCount() > 0)
             return $chapitre->fetch();  // Accès à la première ligne de résultat
@@ -35,8 +52,14 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID=?';
     }
 
     public function getDernierChapitre(){
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID = (select max(CHAP_ID) from T_CHAPITRE )';
+        $sql = 'SELECT 
+          chap_id AS id, 
+          chap_numero AS numero, 
+          chap_titre AS titre, 
+          chap_date AS date, 
+          chap_contenu AS contenu, 
+          chap_nbcom AS nbcom 
+          FROM t_chapitre WHERE chap_id = (SELECT MAX(chap_id) FROM t_chapitre )';
         $dernierChapitre = $this->executerRequete($sql);
         if ($dernierChapitre->rowCount() > 0)
             return $dernierChapitre->fetch();  // Accès à la première ligne de résultat
@@ -46,8 +69,14 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE where CHAP_ID = (se
 
     public function getNChapitres($params, $offset, $limit)
     {
-        $sql = 'select CHAP_ID as id, CHAP_numero as numero, CHAP_TITRE as titre, CHAP_DATE as date, 
-CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID desc';
+        $sql = 'SELECT 
+          chap_id AS id, 
+          chap_numero AS numero, 
+          chap_titre AS titre, 
+          chap_date AS date, 
+          chap_contenu AS contenu, 
+          chap_nbcom AS nbcom 
+          FROM t_chapitre ORDER BY chap_id DESC';
         $resultat = $this->executerRequete($sql, array($params), $offset, $limit);
         if ($resultat->rowCount() > 0) {
             return $resultat;
@@ -56,7 +85,10 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
     }
 
     public function getTitres() {
-        $sql = 'SELECT chap_numero AS numero, chap_titre AS titre, chap_id AS id FROM t_chapitre ORDER BY chap_id DESC';
+        $sql = 'SELECT 
+          chap_titre AS titre, 
+          chap_id AS id 
+          FROM t_chapitre ORDER BY chap_id DESC';
         $titres = $this->executerRequete($sql);
         return $titres;
     }
@@ -67,7 +99,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      */
     public function getNombreChapitres()
     {
-        $sql = 'select count(*) as nbChapitres from T_CHAPITRE';
+        $sql = 'SELECT count(*) AS nbChapitres FROM t_chapitre';
         $resultat = $this->executerRequete($sql);
         $ligne = $resultat->fetch();
         return $ligne['nbChapitres'];
@@ -79,7 +111,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      */
     public function getNumDernierChapitre()
     {
-        $sql = 'SELECT CHAP_numero AS numero FROM t_chapitre ORDER BY CHAP_id DESC LIMIT 1 OFFSET 0';
+        $sql = 'SELECT chap_numero AS numero FROM t_chapitre ORDER BY chap_id DESC LIMIT 1 OFFSET 0';
         $resultat = $this->executerRequete($sql);
         $ligne = $resultat->fetch();
         return $ligne['numero'];
@@ -93,7 +125,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      */
     public function ajouterChapitre($numero, $titre, $contenu)
     {
-        $sql = 'insert into T_CHAPITRE(CHAP_NUMERO, CHAP_TITRE, CHAP_CONTENU) VALUES(?,?,?)';
+        $sql = 'INSERT INTO t_chapitre(chap_numero, chap_titre, chap_contenu) VALUES(?,?,?)';
         $this->executerRequete($sql, array($numero, $titre, $contenu));
     }
 
@@ -106,8 +138,8 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      */
     public function modifierChapitre($numero, $titre, $contenu, $chapitreId)
     {
-        $sql = "UPDATE t_chapitre SET CHAP_NUMERO = ?, CHAP_titre = ?, CHAP_CONTENU = ?
- WHERE CHAP_id = ?";
+        $sql = "UPDATE t_chapitre SET chap_numero = ?, chap_titre = ?, chap_contenu = ?
+          WHERE chap_id = ?";
         $this->executerRequete($sql, array($numero, $titre, $contenu, $chapitreId));
     }
 
@@ -117,7 +149,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
      */
     public function supprimerChapitre($chapitreId)
     {
-        $sql = "DELETE FROM t_chapitre WHERE CHAP_id = ?";
+        $sql = "DELETE FROM t_chapitre WHERE chap_id = ?";
         $this->executerRequete($sql, array($chapitreId));
     }
 }
