@@ -15,26 +15,31 @@
 
     <base href="<?= $racineBlog ?>">
     <script src="../../jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
     <!------------ Bootstrap CSS ------------>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!------------ feuille  CSS ------------>
     <link rel="stylesheet" href="Contenu/style.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- Police de caractères-->
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <title><?= $titre ?></title>
 </head>
 <body>
     <div id="global">
         <div class="container">
             <div class="masthead">
-                <nav class="navbar navbar-light bg-faded rounded mb-3" >
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                        <ul class="nav navbar-nav text-md-center justify-content-md-between">
-                            <li class="nav-item">
-                                <a class="nav-link" href="Accueil/index/">Accueil <span class="sr-only">(current)</span></a>
-                            </li>
+                    <a class="navbar-brand" href="#">Accueil</a>
+
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                             <li class="nav-item">
                                 <a class="nav-link" href="Accueil/index/#headerIntroduction">Présentation</a>
                             </li>
@@ -48,9 +53,15 @@
                                 <a class="nav-link" href="Livre/index/page/1">Table des matières</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="admin">Plûme</a>
+                                <a class="nav-link" href="admin" title="tableau de bord"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
                             </li>
+
                         </ul>
+                        <?php if (isset($_SESSION['login'])):?>
+                            <ul class="navbar-nav navbar-text nav-item">
+                                    <a id='lienDeco' href='connexion/deconnecter'>Se déconnecter</a>
+                            </ul>
+                        <?php endif;?>
                     </div>
                 </nav>
             </div>
@@ -74,9 +85,6 @@
                         unset($_SESSION['flash']);
                     }
                 }; ?>
-                <!------------------------ Panneau Admin ------------------------->
-                <?php if(isset($_SESSION['login'])){
-                    echo '<a href="admin"><p>Retour au tableau de bord</p></a>'; }?>
             </header>
 
             <!----------------------------------- Contenu ---------------------------------->
@@ -97,7 +105,6 @@
 
     <!------------------------------------------ Javascript ------------------------------------------>
     <!-- jQuery first, then Tether, then Bootstrap JS.-->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script>

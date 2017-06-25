@@ -56,7 +56,7 @@ CHAP_CONTENU as contenu, CHAP_nbcom as nbcom from T_CHAPITRE order by CHAP_ID de
     }
 
     public function getTitres() {
-        $sql = 'select CHAP_TITRE as titre, CHAP_ID as id from T_CHAPITRE order by CHAP_ID desc';
+        $sql = 'SELECT chap_numero AS numero, chap_titre AS titre, chap_id AS id FROM t_chapitre ORDER BY chap_id DESC';
         $titres = $this->executerRequete($sql);
         return $titres;
     }

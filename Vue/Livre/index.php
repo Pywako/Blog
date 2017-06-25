@@ -2,14 +2,12 @@
 ?>
 <!------------ Table des matières-------------->
 <div id="tableMatiere" class="jumbotron text-center">
+    <h2>Table des matières</h2>
     <table class="container">
-        <tr>
-            <th><h2>Table des matières</h2></th>
-        </tr>
-        <?php foreach ($titres as $key=>$titre):?>
+        <?php foreach ($titres as $titre):?>
         <tr>
             <td><a href="<?= "Chapitre/index/" . $this->nettoyer($titre['id']) ?>">
-                    <h3 class="text-left display-4"><span class="col-sm-3">Chapitre <?php echo $key+1 .'</span> - <span class="col-sm-9">' . $this->nettoyer($titre['titre']) ?></span></h3>
+                    <h3 class="text-left"><span class="col-sm-3">Chapitre <?php echo $titre['numero'] . '</span><span class="col-sm-9">' . $this->nettoyer($titre['titre']) ?></span></h3>
                 </a>
             </td>
         </tr>

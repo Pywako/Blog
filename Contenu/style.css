@@ -1,23 +1,9 @@
-@font-face{
-    font-family: 'Brushtp';
-    src: url('BRUSHSTP/BRUSHSTP.eot');
-url('BRUSHSTP/BRUSHSTP.woff') format('woff'),
-url('BRUSHSTP/BRUSHSTP.ttf') format('truetype'),
-url('BRUSHSTP/BRUSHSTP.svg#webfont') format('svg');
-}
-@font-face{
-    font-family: 'Calligraffiti';
-    src: url('Calligraffiti/Calligraffiti.eot');
-url('Calligraffiti/Calligraffiti.woff') format('woff'),
-url('Calligraffiti/Calligraffiti.ttf') format('truetype'),
-url('Calligraffiti/Calligraffiti.svg#webfont') format('svg');
-}
-
 .roman{
     text-align: justify;
 }
-h1{
+h1, h2, h3{
     text-align: center;
+    font-family: 'Patrick Hand SC', cursive;
 }
 .introduction{
     font-size: larger;
@@ -28,8 +14,13 @@ body {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    font-family-base: Brushtp, Calligraffiti, Candara;
-    /*background-color: #eee;*/
+}
+p{
+    font-family: 'Lato', sans-serif;
+}
+header{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .form-signin {
@@ -82,43 +73,44 @@ body {
     padding: 14px 24px;
     font-size: 21px;
 }
-
-/*.navbar {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7),to(#eee));
-    background-image: -webkit-linear-gradient(top, #f7f7f7 0%,#eee 100%);
-    background-image: -o-linear-gradient(top, #f7f7f7 0%,#eee 100%);
-    background-image: linear-gradient(to bottom, #f7f7f7 0%,#eee 100%);
-    border: 1px solid #e5e5e5;
-}*/
-
-@media (min-width: 768px) {
-    .navbar-nav {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-    }
-
-    .navbar-nav .nav-item {
-        -webkit-box-flex: 1;
-        -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-    }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    /* Remove the padding we set earlier */
-    .masthead,
-    .marketing,
-    .footer {
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-
 /*chapitre*/
 .chapitre{
     text-align: justify;
+}
+.commentaire{
+    text-align: justify;
+}
+#dernierChapitre{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#creerChapitre{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/*Administration*/
+#adminAction{
+
+}
+#adminCommentaires{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#adminChapitres{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.table th {
+    text-align: center;
+}
+.table td button{
+    margin-top: 5px;
+}
+.titreAdmin{
+    margin: 20px;
 }

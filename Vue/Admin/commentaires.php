@@ -2,7 +2,7 @@
 /**
  * Page de gestion des commentaires dans l'interface admin
  */
-$this->titre = "Billet pour l'Alaska - Administration commentaires";?>
+$this->titre = "Administration commentaires";?>
 <header id="adminCommentaire">
     <h2>Administration Commentaire</h2>
     Ce blog comporte <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).
@@ -29,9 +29,9 @@ $this->titre = "Billet pour l'Alaska - Administration commentaires";?>
                 <td><?= $this->nettoyer($commentaire['com_signalement']) ?></td>
 
                 <td><a id="supprimerCommentaire" href="<?= "admin/supprimerCommentaire/" . $commentaire['com_id']?>">
-                        <button type="button" class="btn btn-danger" title="supprimer" alt="supprimer"><span class="glyphicon glyphicon-remove"></span></span></button></a>
+                        <button type="button" class="btn btn-danger" title="supprimer" alt="supprimer"><i class="fa fa-times" aria-hidden="true"></i></button></a>
                     <a id="RAZCommentaire" href="<?= "admin/remiseAZero/" . $commentaire['com_id']?>">
-                        <button type="button" class="btn btn-primary" title="remise à zéro" alt="remiseAZero"><span class="glyphicon glyphicon-refresh"></span></span></button></a>
+                        <button type="button" class="btn btn-primary" title="remise à zéro" alt="remiseAZero"><i class="fa fa-circle-o" aria-hidden="true"></i></button></a>
                 </td>
             </tr>
         <?php endforeach;?>

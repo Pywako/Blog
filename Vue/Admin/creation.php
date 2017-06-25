@@ -7,18 +7,19 @@ Page d'écriture et modification du chapitre
     <header>
         <h2>Ecriture d'un chapitre</h2>
     </header>
-    <form method="post" action="admin/creer">
+    <form method="post" action="admin/creer" class="form-group">
         <p>
-            <label for="titre">Titre du chapitre : </label>
-            <input type="text" name="titre" id="titre" required> <br>
+            <label for="titre" >Titre du chapitre : </label>
+            <input type="text" class="form-control" name="titre" id="titre" required> <br>
             <label for="numero">Chapitre n° : </label>
-            <input type="text" name="numero" id="numero" value="<?php echo $this->nettoyer($numeroChapitre)?>" required> <br>
-            <input type="hidden" name="id" id="id" value="<?php echo $this->nettoyer($numeroChapitre)?>">
+            <input type="text" class="form-control" name="numero" id="numero" value="<?php echo $this->nettoyer($numeroChapitre)?>" required> <br>
+            <input type="hidden" class="sr-only" name="id" id="id" value="<?php echo $this->nettoyer($numeroChapitre)?>">
         </p>
-        <textarea id="creerChapitre" name="contenu" class="mytextarea" required>
-
-    </textarea>
-        <input type="submit" value = "envoyer">
+    <div id="creerChapitre" name="contenu" required>
+        <textarea name="contenu" class="mytextarea" required>
+        </textarea>
+    </div>
+        <button type="submit" class="btn btn-primary" value = "envoyer">Publier</button>
     </form>
 
 <!-------------------------------- Tinymce -------------------------------->

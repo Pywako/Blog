@@ -1,7 +1,7 @@
-<?php $this->titre = "Billet pour l'Alaska"."<br>"."Connexion" ?>
+<?php $this->titre = "Connexion" ?>
 
 <form action="connexion/connecter" method="post" class="form-signin">
-    <h3 class="form-signin-heading">Identification :</h3>
+    <h3 class="form-signin-heading">Veuillez vous identifier :</h3>
     <label for="login" class="sr-only">Login</label>
     <input name="login" id="login" type="text" class="form-control" placeholder="Entrez votre login" required autofocus>
     <label for="mdp" class="sr-only">Mot de passe</label>
