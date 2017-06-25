@@ -86,6 +86,7 @@ class Chapitre extends Modele {
 
     public function getTitres() {
         $sql = 'SELECT 
+          chap_numero AS numero,
           chap_titre AS titre, 
           chap_id AS id 
           FROM t_chapitre ORDER BY chap_id DESC';
