@@ -22,13 +22,7 @@ class ControleurChapitre extends Controleur {
 
     // Affiche les détails sur un chapitre
     public function index() {
-        if(isset($_SESSION['id']))
-        {
-            $idChapitre     = $this->requete->getSession()->getAttribut("id");
-            $chapitre       = $this->chapitre->getChapitre($idChapitre);
-            $commentaires   = $this->commentaire->getCommentaires($idChapitre);
-        }
-        elseif (isset($_GET['id']))
+        if (isset($_GET['id']))
         {
             $idChapitre     = $this->requete->getParametre("id");
             $chapitre       = $this->chapitre->getChapitre($idChapitre);
