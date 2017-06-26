@@ -73,8 +73,8 @@ CREATE TABLE `t_commentaire` (
 
 
 INSERT INTO `t_commentaire` (`com_id`, `com_auteur`, `com_date`, `com_contenu`, `com_signalement`, `chap_id`, `parent_id`, `com_enfant`) VALUES
-(1, 'myrtille', '2017-06-26 11:57:42', 'Commentaire 1 ', 0, 1, NULL, 0),
-(2, 'Framboise', '2017-06-26 11:57:42', 'Réponse commentaire 1', 0, 1, 1, 0);
+(1, 'myrtille', '2017-06-26 11:57:42', 'Commentaire ', 0, 1, NULL, 0),
+(2, 'Framboise', '2017-06-26 11:57:42', 'Réponse commentaire ', 0, 1, 1, 0);
 
 
 -- --------------------------------------------------------
