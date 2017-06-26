@@ -7,9 +7,9 @@ use P3_blog\Framework\Modele;
  */
 class Chapitre extends Modele {
 
-    /** Renvoie la liste des billets du blog
+    /** Renvoie la liste des chapitres du blog
      * 
-     * @return PDOStatement La liste des billets
+     * @return PDOStatement La liste des chapitres
      */
     public function getChapitres()
     {

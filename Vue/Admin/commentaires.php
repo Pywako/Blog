@@ -6,8 +6,6 @@ $this->titre = "Administration commentaires";?>
 <header id="adminCommentaire">
     <h2>Administration Commentaire</h2>
     Ce blog comporte <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).
-    <a id="lienDeco" href="connexion/deconnecter">Se déconnecter</a>
-    <a href="admin">Retour à l'adminisatration</a>
 </header>
 <div class="table-responsive">
     <table class = "table table-striped table-bordered table-hover">

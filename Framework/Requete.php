@@ -75,7 +75,7 @@ class Requete
         }
         else
         {
-            throw new \Exception("Le paramètre '$nom' est absent de la requête.");
+            $this->session->setFlash("Le paramètre '$nom' est absent de la requête.");
         }
     }
 }

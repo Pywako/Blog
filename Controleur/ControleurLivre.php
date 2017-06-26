@@ -13,17 +13,27 @@ class ControleurLivre extends Controleur {
 
     // Affiche la liste de tous les chapitres du blog
     public function index() {
-        $chapitres      = $this->pagination()['chapitres'];
-        $titres         = $this->chapitre->getTitres();
-        $session        = $this->requete->getSession();
-        $nbPage         = $this->pagination()['nbPage'];
-        $pageActuelle   = $this->pagination()['pageActuelle'];
-        $this->genererVue(array(
-            'chapitres' => $chapitres,
-            'titres'    => $titres,
-            'session'   => $session,
-            'nbPage'    => $nbPage,
-            'pageActuelle'  => $pageActuelle));
+        $nbChapitres    = $this->chapitre->getNombreChapitres();
+        if ($nbChapitres > 0){
+            $chapitres      = $this->pagination()['chapitres'];
+            $titres         = $this->chapitre->getTitres();
+            $session        = $this->requete->getSession();
+            $nbPage         = $this->pagination()['nbPage'];
+            $pageActuelle   = $this->pagination()['pageActuelle'];
+            $this->genererVue(array(
+                'chapitres' => $chapitres,
+                'titres'    => $titres,
+                'session'   => $session,
+                'nbPage'    => $nbPage,
+                'pageActuelle'  => $pageActuelle));
+        }
+        else{
+            $session        = $this->requete->getSession();
+            $this->genererVue(array(
+                'session'   => $session
+                ));
+        }
+
     }
     /**
      * Gestion de la pagination des chapitres
@@ -54,7 +64,7 @@ class ControleurLivre extends Controleur {
         $premierChapitre = ($pageActuelle-1) * $nbChapitreParPage;
         $chapitres       = $this->chapitre->getNChapitres("", $premierChapitre, $nbChapitreParPage);
         $pagination         = array (
-            'chapitres'  => $chapitres,
+            'chapitres'     => $chapitres,
             'nbPage'        => $nbPage,
             'pageActuelle'  => $pageActuelle
         );

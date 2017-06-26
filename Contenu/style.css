@@ -114,3 +114,6 @@ header{
 .titreAdmin{
     margin: 20px;
 }
+.signalement{
+    color: red;
+}

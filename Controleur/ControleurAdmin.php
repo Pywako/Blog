@@ -17,7 +17,7 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function __construct()
     {
-        $this->chapitre = new Chapitre();
+        $this->chapitre    = new Chapitre();
         $this->commentaire = new Commentaire();
     }
 
@@ -26,17 +26,45 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function index()
     {
-        $nbChapitres =$this->chapitre->getNombreChapitres();
-        $login = $this->requete->getSession()->getAttribut("login");
-        $session = $this->requete->getSession();
-        $chapitres = $this->chapitre->getChapitres();
+        $nbChapitres    = $this->chapitre->getNombreChapitres();
+        $login          = $this->requete->getSession()->getAttribut("login");
+        $session        = $this->requete->getSession();
+
         $nbCommentaires = $this->commentaire->getNombreCommentaires();
-        $offset = 0;
-        $limit = 5;
-        $commentaires = $this->commentaire->getNCommentaire("", $offset, $limit);
         $objChapitre = $this->chapitre;
-        $this->genererVue(array('nbChapitres' =>$nbChapitres, 'nbCommentaires' => $nbCommentaires, 'login' => $login,
-            'session' => $session, 'chapitres' => $chapitres, 'commentaires' => $commentaires, 'objChapitre' => $objChapitre));
+
+        if($nbChapitres > 0 && $nbCommentaires > 0){ // Chapitre et commentaire
+            $offset = 0;
+            $limit  = 5;
+            $commentaires = $this->commentaire->getNCommentaire("", $offset, $limit);
+            $chapitres      = $this->chapitre->getChapitres();
+            $this->genererVue(array(
+                'nbChapitres'   => $nbChapitres,
+                'nbCommentaires'=> $nbCommentaires,
+                'login'         => $login,
+                'session'       => $session,
+                'chapitres'     => $chapitres,
+                'commentaires'  => $commentaires,
+                'objChapitre'   => $objChapitre));
+        }
+        else{
+            if($nbCommentaires <= 0 && $nbChapitres > 0){ // Chapitre seul
+                $chapitres      = $this->chapitre->getChapitres();
+                $this->genererVue(array(
+                    'nbChapitres'   => $nbChapitres,
+                    'nbCommentaires'=> $nbCommentaires,
+                    'login'         => $login,
+                    'session'       => $session,
+                    'chapitres'     => $chapitres));
+            }
+            else{ // ni chapitre, ni commentaire
+                $this->genererVue(array(
+                    'nbChapitres'   => $nbChapitres,
+                    'nbCommentaires'=> $nbCommentaires,
+                    'login'         => $login,
+                    'session'       => $session));
+            }
+        }
     }
 
     /**
@@ -47,7 +75,9 @@ class ControleurAdmin extends ControleurSecurise
     {
         $numeroChapitre = $this->chapitre->getNumDernierChapitre() + 1;
         $session = $this->requete->getSession();
-        $this->genererVue(array('numeroChapitre' =>$numeroChapitre, 'session' => $session));
+        $this->genererVue(array(
+            'numeroChapitre'=> $numeroChapitre,
+            'session'       => $session));
 
     }
     public function modification()
@@ -55,7 +85,9 @@ class ControleurAdmin extends ControleurSecurise
         $chapitreId = $this->requete->getParametre('id');
         $chapitre= $this->chapitre->getChapitre($chapitreId);
         $session = $this->requete->getSession();
-        $this->genererVue(array('chapitre'=> $chapitre, 'session' => $session));
+        $this->genererVue(array(
+            'chapitre'=> $chapitre,
+            'session' => $session));
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php $this->titre = "Billet pour l'Alaska";
 ?>
+<?php if (isset($chapitres)):?>
 <!------------ Table des matières-------------->
 <div id="tableMatiere" class="jumbotron text-center">
     <h2>Table des matières</h2>
@@ -17,13 +18,13 @@
 <?php
 $url = "/commentaires/page/";
 include "Vue/pagination.php"?>
-
+<!--Affichage des chapitres-->
 <?php foreach ($chapitres as $chapitre):
     ?>
     <article class="chapitre">
         <header>
             <a href="<?= "Chapitre/index/" . $this->nettoyer($chapitre['id']) ?>">
-                <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['titre']) ?></h1>
+                <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['numero'])?> - <?= $this->nettoyer($chapitre['titre']) ?></h1>
             </a>
             <time><?= $this->nettoyer($chapitre['date']) ?></time>
         </header>
@@ -32,4 +33,7 @@ include "Vue/pagination.php"?>
     <hr />
 <?php endforeach;
 include "Vue/pagination.php"?>
-
+<?php endif;?>
+<?php if (!isset($chapitres)):?>
+    <h2>Roman en cours d'écriture ...</h2>
+<?php endif;?>

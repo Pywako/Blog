@@ -24,55 +24,90 @@ class ControleurChapitre extends Controleur {
     public function index() {
         if (isset($_GET['id']))
         {
-            $idChapitre     = $this->requete->getParametre("id");
+            if(isset($_SESSION['id']) && !empty($_SESSION['id']))
+            {
+                $idChapitre = $this->requete->getsession()->getAttribut("id");
+            }
+            else{
+                $idChapitre = $this->requete->getParametre("id");
+            }
             $chapitre       = $this->chapitre->getChapitre($idChapitre);
             $commentaires   = $this->commentaire->getCommentaires($idChapitre);
+            $session        = $this->requete->getSession();
+            $this->genererVue(array(
+                'chapitre'      => $chapitre,
+                'commentaires'  => $commentaires,
+                'session'       => $session));
         }
         else{
+            $session = $this->requete->getSession();
             $this->requete->getSession()->setflash("Le chapitre sélectionner n'existe pas :(", "danger");
+            $this->genererVue(array(
+                'session' => $session));
         }
-        $session = $this->requete->getSession();
-        $this->genererVue(array(
-            'chapitre' => $chapitre,
-            'commentaires' => $commentaires,
-            'session' => $session));
     }
 
     // Ajoute un commentaire sur un billet
     public function commenter() {
         if(isset($_POST['auteur']) && !empty($_POST['auteur']))
         {
+            $pattern = "#^([a-zA-Z0-9]*)$#";
             $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
-            if(isset($_POST['contenu']) && !empty($_POST['contenu']))
+            if(preg_match($pattern, $auteur))
             {
-                $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
-                if(isset($_POST['id']) && !empty($_POST['id']))
+                if(isset($_POST['contenu']) && !empty($_POST['contenu']))
                 {
-                    $idChapitre = $this->requete->getParametre("id");
-                    $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
-                    $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
+                    $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
+                    if(isset($_POST['id']) && !empty($_POST['id']))
+                    {
+                        $idChapitre = $this->requete->getParametre("id");
+                        $test= "#^([0-9]*)$#";
+                        if(preg_match( $test ,$idChapitre)){
+                            $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
+                            $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
+                        }
+                        else{
+                            $this->requete->getSession()->setflash("id du chapitre non conforme :(", "danger");
+                        }
+                    }
+                    else{
+                        $this->requete->getSession()->setflash("id du chapitre non reconnu :(", "danger");
+                    }
                 }
                 else{
-                    $this->requete->getSession()->setflash("id du chapitre non reconnu :(", "danger");
+                    $this->requete->getSession()->setflash("Vous n'avez rien écrit :(", "danger");
                 }
             }
             else{
-                $this->requete->getSession()->setflash("Vous n'avez rien écrit :(", "danger");
+                $this->requete->getSession()->setflash("Le nom choisi n'est pas conforme", "danger");
             }
         }
         else{
             $this->requete->getSession()->setflash("comment vous appelez vous?", "danger");
         }
-        // Exécution de l'action par défaut pour réafficher la liste des billets
+        // Exécution de l'action par défaut pour réafficher la page index
         $this->executerAction("index");
     }
+
+    /**
+     * Fonction de gestion des signalement
+     *
+     */
     public function signaler() {
-        $commentaireId = $this->requete->getParametre("id");
-        $commentaire   = $this->commentaire->getOneCommentaire($commentaireId);
-        $this->commentaire->signaler($commentaireId);
-        $this->requete->getSession()->setflash("Le commentaire a bien été signalé.", "success");
-        // Exécution de l'action par défaut pour réafficher la liste des billets
-        $this->rediriger("chapitre", "index", $commentaire['chap_id']);
+        if (isset($_GET['id']) && !empty($_GET['id']))
+        {
+            $commentaireId = $this->requete->getParametre("id");
+            $commentaire   = $this->commentaire->getOneCommentaire($commentaireId);
+            $this->commentaire->signaler($commentaireId);
+            $this->requete->getSession()->setflash("Le commentaire a bien été signalé.", "success");
+            // Exécution de l'action par défaut pour réafficher la page index
+            $this->rediriger("chapitre", "index", $commentaire['chap_id']);
+        }
+        else{
+            $this->requete->getSession()->setflash("oups, le commentaire est introuvable ...", "danger");
+            $this->genererVue(array(
+                'session' => $session));
+        }
     }
 }
 

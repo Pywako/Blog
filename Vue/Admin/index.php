@@ -10,7 +10,7 @@ $this->titre = "Tableau de bord";?>
     Bienvenue, <?= $this->nettoyer($login) ?> ! <br>
 
     Ce blog comporte <?= $this->nettoyer($nbChapitres) ?> chapitre(s)
-    et <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).<br>
+    et <?= $this->nettoyer($nbCommentaires) ?> commentaire(s).
 </p>
 <div id="adminAction">
     <a id="ecrire" href="admin/creation"><button type="button" class="btn btn-success">Ecrire un chapitre</button></a>

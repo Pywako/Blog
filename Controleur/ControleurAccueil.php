@@ -16,12 +16,23 @@ class ControleurAccueil extends Controleur
 
     // Affiche la liste de tous les chapitres du blog
     public function index() {
-        $chapitre = $this->chapitre->getDernierChapitre();
-        $session = $this->requete->getSession();
-        $this->genererVue(array('chapitre' => $chapitre, 'session' => $session));
+        $session        = $this->requete->getSession();
+        $nbChapitres    = $this->chapitre->getNombreChapitres();
+        if($nbChapitres > 0)
+        {
+            $chapitre   = $this->chapitre->getDernierChapitre();
+            $this->genererVue(array(
+                'chapitre'  => $chapitre,
+                'session'   => $session));
+        }
+        else{
+            $this->genererVue(array(
+                'session' => $session));
+        }
     }
     public function mentions() {
-        $session = $this->requete->getSession();
-        $this->genererVue(array('session' => $session));
+        $session    = $this->requete->getSession();
+        $this->genererVue(array(
+            'session' => $session));
     }
 }

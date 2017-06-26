@@ -24,11 +24,17 @@ $this->titre = "Billet pour l'Alaska ";?>
 
     <section id="dernierChapitre">
         <h2>Dernier chapitre :</h2>
+        <?php if (isset($chapitre)):?>
         <a href="<?= "Chapitre/index/" . $this->nettoyer($chapitre['id']) ?>">
-            <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['titre']) ?></h1>
+            <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['numero'])?> - <?= $this->nettoyer($chapitre['titre']) ?></h1>
         </a>
         <time><?= $this->nettoyer($chapitre['date']) ?></time>
         <div class="chapitre"><?= $chapitre['contenu'] ?></div>
+        <?php endif;?>
+        <?php if(!isset($chapitre)):?>
+            <h4>Aucun chapitre pour le moment ...</h4>
+        <?php endif;?>
+
     </section>
 
     <section id="auteur" class="jumbotron">
