@@ -12,12 +12,41 @@
     <header>
         <h1 id="titreReponses">Réponses à <?= $this->nettoyer($chapitre['titre']) ?></h1>
     </header>
-    <?php foreach ($commentaires as $commentaire):?>
-        <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
-        <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
-        <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['id']?>">
-            <button type="button" class="btn btn-warning">Signaler</button></a>
-    <?php endforeach; ?>
+    <?php
+    $commentaireParId =[];
+
+    // tableau de commentaires indexé par leur id
+    foreach ($commentaires as $commentaire) {
+        $commentaireParId[$commentaire['id']] = $commentaire;
+    }
+
+    //Entrer les valeurs enfants (tableau commentaire) pour le champs enfant d echaque parent
+    foreach ($commentaires as $key => $commentaire){
+        if($commentaire['parent_id'] != 0) // Réponse
+        {
+            $commentaireParId[$commentaire['parent_id']]['enfant']= $commentaire;
+            unset($commentaireParId[$key]);
+        }
+        /*
+        // Seconde boucle pour compléter les enfants des enfants
+        foreach ($commentaireParId as $k => $commentaireEnfant)
+        {
+            if($commentaireEnfant['parent_id']!=0)
+            {
+                $commentaireParId[$commentaireEnfant['parent_id']]['enfant'] = $commentaireEnfant;
+            }
+        }
+        */
+    }
+    //$commentaires = $commentaireParId;
+    // Inclusion de la partie HTML
+    /*
+    foreach ($commentaireParId as $key=>$commentaire):?>
+        <?php require ('Vue/Chapitre/Commentaires.php');
+        ?>
+    <?php endforeach;
+    */
+    ?>
     <hr />
     <!-------------- Commenter -------------->
     <form method="post" action="chapitre/commenter" id="formulaireCommenter">
