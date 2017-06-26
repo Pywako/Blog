@@ -32,7 +32,7 @@ class ControleurChapitre extends Controleur {
                 $idChapitre = $this->requete->getParametre("id");
             }
             $chapitre       = $this->chapitre->getChapitre($idChapitre);
-            $commentaires   = $this->commentaire->getCommentaires($idChapitre);
+            $commentaires   = $this->commentaire->formaterCommentaires($idChapitre);
             $session        = $this->requete->getSession();
             $this->genererVue(array(
                 'chapitre'      => $chapitre,
