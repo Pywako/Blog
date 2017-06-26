@@ -19,13 +19,18 @@
             <button type="button" class="btn btn-warning">Signaler</button></a>
     <?php endforeach; ?>
     <hr />
-    <form method="post" action="chapitre/commenter">
-        <input id="auteur" name="auteur" type="text" placeholder="Votre pseudo"
-               required /><br />
-        <textarea id="txtCommentaire" name="contenu" rows="4"
-                  placeholder="Votre commentaire" required></textarea><br />
-        <input type="hidden" name="id" value="<?= $chapitre['id']?>" />
-        <input type="submit" value="Commenter" />
+    <!-------------- Commenter -------------->
+    <form method="post" action="chapitre/commenter" id="formulaireCommenter">
+        <input type="hidden" name="parend_id" value="0">
+        <h3>Poster un commentaire</h3>
+        <div class="form-group">
+            <input id="auteur" name="auteur" type="text" class="form-control" placeholder="Votre pseudo" required /><br />
+            <textarea id="txtCommentaire" name="contenu" class="form-control" placeholder="Votre commentaire" required></textarea>
+            <input class="sr-only" type="hidden" name="id" value="<?= $chapitre['id']?>" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Commenter</button>
+        </div>
     </form>
 </div>
 
