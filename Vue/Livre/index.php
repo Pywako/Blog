@@ -16,7 +16,7 @@
     </table>
 </div>
 <?php
-$url = "/commentaires/page/";
+$url = "livre?page=";
 include "Vue/pagination.php"?>
 <!--Affichage des chapitres-->
 <?php foreach ($chapitres as $chapitre):

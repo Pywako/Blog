@@ -37,5 +37,5 @@ $this->titre = "Administration commentaires";?>
 </div>
 <!---------------- Pagination ------------>
 <?php
-$url = "admin/commentaires/page/";
+$url = "admin/commentaires?page=";
 include "Vue/pagination.php"?>

@@ -14,7 +14,7 @@ $this->titre = "Tableau de bord";?>
 </p>
 <div id="adminAction">
     <a id="ecrire" href="admin/creation"><button type="button" class="btn btn-success">Ecrire un chapitre</button></a>
-    <a href="admin/commentaires/page/1"><button class="btn btn-primary">Voir tous les commentaires</button></a>
+    <a href="admin/commentaires?page=1"><button class="btn btn-primary">Voir tous les commentaires</button></a>
 </div>
 
 <!-- Tableau 5 derniers Commentaires-->

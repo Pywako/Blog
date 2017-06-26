@@ -50,7 +50,7 @@
                                 <a class="nav-link" href="Accueil/index/#auteur">L'auteur</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Livre/index/page/1">Table des matières</a>
+                                <a class="nav-link" href="Livre/index/table?page=1">Table des matières</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="admin" title="tableau de bord"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
