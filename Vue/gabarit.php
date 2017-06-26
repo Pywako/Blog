@@ -75,14 +75,13 @@
 
                 <?php if (isset($session)) {
                     $flash = $session->getFlash();
-                    if(isset($_SESSION['flash']))
+                    if($flash)
                     {?>
                         <div id="alert" class="alert alert-<?php echo $flash['type'] ?> alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
                             <?php echo $flash['message']; ?>
                         </div>
                         <?php
-                        unset($_SESSION['flash']);
                     }
                 }; ?>
             </header>

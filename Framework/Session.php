@@ -83,7 +83,13 @@ class Session
     {
         if(isset($_SESSION['flash']))
         {
-            return $_SESSION['flash'];
+            $data = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+            return $data;
+        }
+        else
+        {
+            return false;
         }
     }
 }
