@@ -17,7 +17,7 @@
 </div>
 <?php
 $url = "livre?page=";
-include "Vue/pagination.php"?>
+include "Vue/_pagination.php"?>
 <!--Affichage des chapitres-->
 <?php foreach ($chapitres as $chapitre):
     ?>
@@ -32,7 +32,7 @@ include "Vue/pagination.php"?>
     </article>
     <hr />
 <?php endforeach;
-include "Vue/pagination.php"?>
+include "Vue/_pagination.php"?>
 <?php endif;?>
 <?php if (!isset($chapitres)):?>
     <h2>Roman en cours d'écriture ...</h2>

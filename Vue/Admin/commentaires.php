@@ -38,4 +38,4 @@ $this->titre = "Administration commentaires";?>
 <!---------------- Pagination ------------>
 <?php
 $url = "admin/commentaires?page=";
-include "Vue/pagination.php"?>
+include "Vue/_pagination.php"?>
