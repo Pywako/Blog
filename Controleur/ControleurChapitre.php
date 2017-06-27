@@ -58,13 +58,20 @@ class ControleurChapitre extends Controleur {
                 if(isset($_POST['contenu']) && !empty($_POST['contenu']))
                 {
                     $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
-                    if(isset($_POST['id']) && !empty($_POST['id']))
+                    if(isset($_POST['chap_id']) && !empty($_POST['chap_id']))
                     {
-                        $idChapitre = $this->requete->getParametre("id");
+                        $idChapitre = $this->requete->getParametre("chap_id");
                         $test= "#^([0-9]*)$#";
                         if(preg_match( $test ,$idChapitre)){
-                            $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
-                            $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
+                            if ($this->requete->existeParametrePost("parent_id")){
+                                $idParent = $this->requete->getParametre("parent_id");
+                                $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre, $idParent);
+                                $this->requete->getSession()->setflash("Merci pour votre retour, la réponse au commentaire a été ajoutée ! ;)", "success");
+                            }
+                            else{
+                                $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre);
+                                $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
+                            }
                         }
                         else{
                             $this->requete->getSession()->setflash("id du chapitre non conforme :(", "danger");
