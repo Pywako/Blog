@@ -27,10 +27,10 @@ class ControleurChapitre extends Controleur
     // Affiche les détails sur un chapitre
     public function index()
     {
-        if (isset($_GET['id']) || isset($_GET['chap_id'])) {
-            if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
-                $idChapitre = $this->requete->getsession()->getAttribut("id");
-            } elseif (isset($_GET['id']) || isset($_POST['id'])) {
+        if ($this->requete->existeParametreGet('id') || $this->requete->existeParametrePost('id') || $this->requete->getSession()->existeAttribut("id")) {
+            if ($this->requete->getSession()->existeAttribut("id")) {
+                $idChapitre = $this->requete->getSession()->getAttribut("id");
+            } elseif ($this->requete->existeParametreGet("id") || $this->requete->existeParametrePost("id")) {
                 $idChapitre = $this->requete->getParametre("id");
             }
             $chapitre = $this->chapitre->getChapitre($idChapitre);
@@ -52,29 +52,14 @@ class ControleurChapitre extends Controleur
     public function commenter()
     {
         if (isset($_POST['auteur']) && !empty($_POST['auteur'])) {
-            $pattern = "#^([a-zA-Z0-9]*)$#";
+            $pattern = "#[a-zA-Z0-9]{5}#";
             $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
             if (preg_match($pattern, $auteur)) {
                 if (isset($_POST['contenu']) && !empty($_POST['contenu'])) {
                     $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
-                    if ($this->requete->existeParametrePost('chap_id')) {
-                        $idChapitre = $this->requete->getParametre("chap_id");
-                        $test = "#^([0-9]*)$#";
-                        if (preg_match($test, $idChapitre)) {
-                            if ($this->requete->existeParametrePost("parent_id")) {
-                                $idParent = $this->requete->getParametre("parent_id");
-                                $this->requete->getSession()->setflash("Merci pour votre retour, la réponse au commentaire a été ajoutée ! ;)", "success");
-                            } else {
-                                $idParent = null;
-                                $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
-                            }
-                            $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre, $idParent);
-                        } else {
-                            $this->requete->getSession()->setflash("id du chapitre non conforme :(", "danger");
-                        }
-                    } elseif ($this->requete->existeParametrePost('id')) {
+                    if ($this->requete->existeParametrePost('id')) {
                         $idChapitre = $this->requete->getParametre("id");
-                        $test = "#^([0-9]*)$#";
+                        $test = "#[0-9]#";
                         if (preg_match($test, $idChapitre)) {
                             if ($this->requete->existeParametrePost("parent_id")) {
                                 $idParent = $this->requete->getParametre("parent_id");
