@@ -1,8 +1,8 @@
-<?php $this->titre = "Billet pour l'Alaska " . "<br>" . "Chapitre " . $this->nettoyer($chapitre['numero']); ?>
-
+<?php if (isset($chapitre)):?>
+<?php $this->titre = "Billet pour l'Alaska"; ?>
 <article class="chapitre">
     <header>
-        <h1 class="titreChapitre"><?= $this->nettoyer($chapitre['titre']) ?></h1>
+        <h1 class="titreChapitre">Chapitre <?= $this->nettoyer($chapitre['numero']) . " - " .$this->nettoyer($chapitre['titre']) ?></h1>
         <time><?= $this->nettoyer($chapitre['date']) ?></time>
     </header>
     <p><?= $chapitre['contenu'] ?></p>
@@ -47,7 +47,7 @@
     <?php endforeach; ?>
     <!-------------- Commenter -------------->
     <form method="post" action="chapitre/commenter" id="formulaireCommenter">
-        <input type="hidden" name="parend_id" value="0">
+        <input type="hidden" name="parent_id" value="">
         <h3>Poster un commentaire</h3>
         <div class="form-group">
             <input id="auteur" name="auteur" type="text" class="form-control" placeholder="Votre pseudo"
@@ -60,4 +60,25 @@
             <button type="submit" class="btn btn-primary">Commenter</button>
         </div>
     </form>
+    <?php if(isset($commentaires) && !empty($commentaires)):?>
+        <form method="post" action="chapitre/commenter" id="formulaireReponse">
+            <h3>Répondre à ce commentaire</h3>
+            <div class="form-group">
+                <input id="auteur" name="auteur" type="text" class="form-control" placeholder="Votre pseudo"
+                       required/><br/>
+                <textarea id="txtCommentaire" name="contenu" class="form-control" placeholder="Votre commentaire"
+                          required></textarea>
+                <input class="sr-only" type="hidden" name="id" value="<?= $chapitre['id'] ?>"/>
+                <input class="sr-only" type="hidden" name="parent_id" value="" id="parent_id">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Répondre</button>
+            </div>
+        </form>
+    <?php endif;?>
 </div>
+<?php endif;?>
+<?php if (!isset($chapitre)):?>
+    <?php $this->titre = "Billet pour l'Alaska " . "<br>" . "Chapitre "; ?>
+    <h3>Oups, pas de chapitre correspondant...</h3>
+<?php endif;?>
