@@ -17,29 +17,7 @@
     // Inclusion de la partie HTML
 
     foreach ($commentaires['parent'] as $commentaire): ?>
-        <div class="panel panel-default" id="commentaire-<?= $commentaire['id'] ?>">
-            <div class="panel-body">
-                <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
-                <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
-                <p class="text-right">
-                    <button type="button" class="btn btn-info reponse" data-id="<?= $commentaire['id'] ?>">Répondre
-                    </button>
-                    <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['id'] ?>">
-                        <button type="button" class="btn btn-warning">Signaler</button>
-                    </a>
-                </p>
-                <?php if (isset($commentaires['enfant'][$commentaire['id']])): ?>
-                    <?php foreach ($commentaires['enfant'] as $commentaireEnfant): ?>
-                        <?php if ($commentaireEnfant['parent_id'] == $commentaire['id']): ?>
-                            <div id="commentaire-<?= $commentaireEnfant['id'] ?>"
-                                 style="margin-left: 50px;">
-                                <?php include("Vue/Chapitre/_commentaires.php"); ?>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-        </div>
+        <?php include("Vue/Chapitre/_commentaires.php"); ?>
     <?php endforeach; ?>
     <hr/>
     <!-------------- Commenter -------------->
@@ -51,12 +29,11 @@
                    required/><br/>
             <textarea id="txtCommentaire" name="contenu" class="form-control" placeholder="Votre commentaire"
                       required></textarea>
-            <input class="sr-only" type="hidden" name="id" value="<?= $chapitre['id'] ?>"/>
+            <input class="sr-only" type="hidden" name="chap_id" value="<?= $chapitre['id'] ?>"/>
+            <input class="sr-only" type="hidden" name="parent_id" value="<?= $chapitre['parent_id'] ?>"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Commenter</button>
         </div>
     </form>
 </div>
-
-
