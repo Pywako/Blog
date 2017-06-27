@@ -13,11 +13,8 @@
         <header>
             <h1 id="titreReponses">Réponses à <?= $this->nettoyer($chapitre['titre']) ?></h1>
         </header>
-        <pre>
-            <?php //print_r($commentaires['enfant']); ?>
-        </pre>
-        <?php
 
+        <?php
         // Inclusion de la partie HTML
         //Boucle sur les parents
         foreach ($commentaires['parent'] as $commentaire): ?>
@@ -27,10 +24,10 @@
                     <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
                     <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
                     <p class="text-right">
-                        <button type="button" class="btn btn-info reponse" data-id="<?= $commentaire['id'] ?>">Répondre
+                        <button type="button" class="btn btn-info reponse" data-id="<?= $commentaire['id'] ?>" data-niveau="<?php $niveau = 0 ?>">Répondre
                         </button>
                         <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['id'] ?>">
-                            <button type="button" class="btn btn-warning">Signaler</button>
+                            <button type="button" class="btn btn-warning" >Signaler</button>
                         </a>
                     </p>
                 </div>
@@ -41,6 +38,7 @@
                 <?php foreach ($commentaires['enfant'] as $key => $commentaireEnfant): ?>
                     <?php if ($key == $id_parent): ?>
                         <?php foreach ($commentaireEnfant as $commentaire): ?>
+                            <?php $niveau = 1?>
                             <!-- commentaire Enfant -->
                             <div style="margin-left: 50px;">
                                 <?php include("Vue/Chapitre/_commentaires.php"); ?>
