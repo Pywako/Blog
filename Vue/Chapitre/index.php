@@ -17,9 +17,34 @@
     // Inclusion de la partie HTML
 
     foreach ($commentaires['parent'] as $commentaire): ?>
-        <?php include("Vue/Chapitre/_commentaires.php"); ?>
+        <!-- Commentaire parent-->
+        <div class="card" id="commentaire-<?= $commentaire['id'] ?>">
+            <div class="card-block">
+                <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
+                <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
+                <p class="text-right">
+                    <button type="button" class="btn btn-info reponse" data-id="<?= $commentaire['id'] ?>">Répondre
+                    </button>
+                    <a id="signalerCommentaire" href="<?= "chapitre/signaler/" . $commentaire['id'] ?>">
+                        <button type="button" class="btn btn-warning">Signaler</button>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <?php $id_parent = $commentaire['id']; ?>
+        <?php if (isset($commentaires['enfant'][$id_parent])): ?>
+            <?php foreach ($commentaires['enfant'] as $key => $commentaireEnfant): ?>
+                <?php foreach ($commentaireEnfant as $k => $commentaire): ?>
+                    <?php if ($commentaireEnfant[$k]['parent_id'] == $id_parent): ?>
+                        <!-- commentaire Enfant -->
+                        <div style="margin-left: 50px;">
+                            <?php include("Vue/Chapitre/_commentaires.php"); ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     <?php endforeach; ?>
-    <hr/>
     <!-------------- Commenter -------------->
     <form method="post" action="chapitre/commenter" id="formulaireCommenter">
         <input type="hidden" name="parend_id" value="0">
@@ -29,7 +54,7 @@
                    required/><br/>
             <textarea id="txtCommentaire" name="contenu" class="form-control" placeholder="Votre commentaire"
                       required></textarea>
-            <input class="sr-only" type="hidden" name="chap_id" value="<?= $chapitre['id'] ?>"/>
+            <input class="sr-only" type="hidden" name="id" value="<?= $chapitre['id'] ?>"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Commenter</button>

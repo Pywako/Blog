@@ -28,7 +28,7 @@ class Commentaire extends Modele
             $commentaires = $req->fetchAll(\PDO::FETCH_ASSOC);
             return $commentaires;
         } else {
-            throw new \Exception("Aucun commentaire à l'identifiant '$idCommentaire'");
+            throw new \Exception("Aucun commentaire à l'identifiant '$idChapitre'");
         }
 
     }
@@ -136,7 +136,7 @@ class Commentaire extends Modele
                 $tableauCommentaires["parent"][] = $commentaire;
             }
             else{
-                $tableauCommentaires["enfant"][$commentaire['parent_id']] = $commentaire;
+                $tableauCommentaires["enfant"][$commentaire['parent_id']][] = $commentaire;
             }
         }
         return $tableauCommentaires;
