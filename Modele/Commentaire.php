@@ -22,8 +22,7 @@ class Commentaire extends Modele
               com_contenu AS contenu,
               com_signalement AS signalement, 
               chap_id AS chap_id,
-              parent_id AS parent_id, 
-              com_enfant AS enfant 
+              parent_id AS parent_id
               FROM t_commentaire WHERE chap_id=?';
             $req = $this->executerRequete($sql, array($idChapitre));
             $commentaires = $req->fetchAll(\PDO::FETCH_ASSOC);
@@ -81,11 +80,11 @@ class Commentaire extends Modele
             throw new \Exception("offset et limite mal définies");
     }
 
-    public function ajouterCommentaire($auteur, $contenu, $idChapitre)
+    public function ajouterCommentaire($auteur, $contenu, $idChapitre, $idParent = null)
     {
-        $sql = 'INSERT INTO t_commentaire(com_auteur, com_contenu, chap_id)'
-            . ' VALUES(?,?,?)';
-        $this->executerRequete($sql, array($auteur, $contenu, $idChapitre));
+        $sql = 'INSERT INTO t_commentaire(com_auteur, com_contenu, chap_id, parent_id)'
+            . ' VALUES(?,?,?,?)';
+        $this->executerRequete($sql, array($auteur, $contenu, $idChapitre, $idParent));
     }
 
     /**
