@@ -52,7 +52,7 @@ class ControleurChapitre extends Controleur
     public function commenter()
     {
         if (isset($_POST['auteur']) && !empty($_POST['auteur'])) {
-            $pattern = "#[a-zA-Z0-9]{5}#";
+            $pattern = "#[a-zA-Z0-9]{3}#";
             $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
             if (preg_match($pattern, $auteur)) {
                 if (isset($_POST['contenu']) && !empty($_POST['contenu'])) {

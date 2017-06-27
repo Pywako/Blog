@@ -3,6 +3,7 @@
  * Bloc correspondant à un commentaire
  */
 ?>
+    <!-- Commentaire parent-->
     <div class="card" id="commentaire-<?= $commentaire['id'] ?>">
         <div class="card-block">
             <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
@@ -16,17 +17,17 @@
             </p>
         </div>
     </div>
-
-<?php $id_parent_bis = $commentaire['id']; ?>
-<?php if (isset($commentaires['enfant'][$id_parent])): ?>
-    <?php foreach ($commentaires['enfant'] as $keyBis => $commentaireEnfantBis): ?>
-        <?php foreach ($commentaireEnfantBis as $kBis => $commentaire): ?>
-            <?php if ($commentaireEnfantBis[$kBis]['parent_id'] == $id_parent_bis): ?>
+<?php $id_parent2 = $commentaire['id']; ?>
+<?php if (isset($commentaires['enfant'][$id_parent2])):
+    // Boucle sur les enfants?>
+    <?php foreach ($commentaires['enfant'] as $key => $commentaireEnfant): ?>
+        <?php if ($key == $id_parent2): ?>
+            <?php foreach ($commentaireEnfant as $commentaire): ?>
                 <!-- commentaire Enfant -->
                 <div style="margin-left: 50px;">
                     <?php include("Vue/Chapitre/_commentaires.php"); ?>
                 </div>
-            <?php endif; ?>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     <?php endforeach; ?>
 <?php endif; ?>
