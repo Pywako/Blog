@@ -124,14 +124,14 @@
         //Action click réponse à un commentaire
         $(".reponse").click(function (e) {
             e.preventDefault();
-
-            var $formulaire = $('#formulaireCommenter');
+            var $formulaire = $('#formulaireReponse');
             var $this = $(this);
-            var $parent_id = $this.data('id');
-            //$this.attr('data-id')
-            var $comment = $('#commentaire-' + $parent_id);
+            var parent_id = $this.data('id');
+            var $comment = $('#commentaire-' + parent_id);
 
+            $('#parent_id').val(parent_id);
             $comment.after($formulaire);
+            $formulaire.show();
         });
     })
     ;

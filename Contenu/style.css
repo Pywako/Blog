@@ -120,3 +120,6 @@ header{
 .card{
     margin-bottom: 10px;
 }
+#formulaireReponse{
+    display: none;
+}
