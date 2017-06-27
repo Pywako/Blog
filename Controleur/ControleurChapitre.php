@@ -13,7 +13,7 @@ class ControleurChapitre extends Controleur {
     private $commentaire;
 
     /**
-     * Constructeur 
+     * Constructeur
      */
     public function __construct() {
         $this->chapitre    = new Chapitre();
@@ -22,7 +22,7 @@ class ControleurChapitre extends Controleur {
 
     // Affiche les détails sur un chapitre
     public function index() {
-        if (isset($_GET['id']))
+        if (isset($_GET['id']) || isset($_GET['chap_id']))
         {
             if(isset($_SESSION['id']) && !empty($_SESSION['id']))
             {

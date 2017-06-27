@@ -121,7 +121,7 @@
 <script>
     $(function () {
         $(".alert").alert();
-        //Réponse aux commentaires
+        //Action click réponse à un commentaire
         $(".reponse").click(function (e) {
             e.preventDefault();
 

@@ -30,7 +30,6 @@
             <textarea id="txtCommentaire" name="contenu" class="form-control" placeholder="Votre commentaire"
                       required></textarea>
             <input class="sr-only" type="hidden" name="chap_id" value="<?= $chapitre['id'] ?>"/>
-            <input class="sr-only" type="hidden" name="parent_id" value="<?= $chapitre['parent_id'] ?>"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Commenter</button>
