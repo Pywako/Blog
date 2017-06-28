@@ -30,6 +30,7 @@ class ControleurChapitre extends Controleur
         if ($this->requete->existeParametreGet('id') || $this->requete->existeParametrePost('id') || $this->requete->getSession()->existeAttribut("id")) {
             if ($this->requete->getSession()->existeAttribut("id")) {
                 $idChapitre = $this->requete->getSession()->getAttribut("id");
+                $this->requete->getSession()->setAttribut('id',"");
             } elseif ($this->requete->existeParametreGet("id") || $this->requete->existeParametrePost("id")) {
                 $idChapitre = $this->requete->getParametre("id");
             }
