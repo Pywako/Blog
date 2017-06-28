@@ -62,7 +62,7 @@
                 <button type="submit" class="btn btn-primary">Commenter</button>
             </div>
         </form>
-        <!-- Répondre -->
+        <!-------------- Répondre -------------->
         <?php if (isset($commentaires) && !empty($commentaires)): ?>
             <form method="post" action="chapitre/commenter" id="formulaireReponse">
                 <h3>Répondre à ce commentaire</h3>

@@ -5,7 +5,7 @@ namespace P3_blog\Modele;
 use P3_blog\Framework\Modele;
 
 /**
- * Fournit les services d'accès aux genres musicaux
+ * Classe permettant d'interagir avec la bdd et préparer, ajouter, supprimer les commentaires
  *
  */
 class Commentaire extends Modele

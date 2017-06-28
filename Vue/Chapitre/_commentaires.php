@@ -1,6 +1,6 @@
 <?php
 /**
- * Bloc correspondant à un commentaire
+ * Inclusion des commentaires enfants de niveau 1 2 3
  */
 
 ?>

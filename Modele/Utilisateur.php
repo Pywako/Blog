@@ -45,12 +45,22 @@ class Utilisateur extends Modele
             throw new \Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }
 
+    /**
+     * Fonction de génération de mot de passe
+     * @param $mdp
+     * @return bool|string
+     */
     private function genererMdp($mdp)
     {
         $hash = password_hash( $mdp, PASSWORD_BCRYPT);
         return $hash;
     }
 
+    /**
+     * Fonction de création d'utilisateur
+     * @param $nom
+     * @param $mdp
+     */
     public function creerUtilisateur($nom, $mdp)
     {
         $mdpSecurise = $this->genererMdp($mdp);

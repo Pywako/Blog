@@ -17,3 +17,6 @@ Demande :
     - Administration des chapitres pour l'écriture, la modification et suppression
     -  Modération des commentaires
     -  Remonté des commentaires signalés
+    
+    Projet réalisé à partir du cours de Baptiste Pesquet (base du framework utilisé)
+     * (https://github.com/bpesquet/MonBlog/tree/master)

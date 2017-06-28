@@ -80,6 +80,10 @@ class ControleurAdmin extends ControleurSecurise
             'session'       => $session));
 
     }
+
+    /**
+     * Fonction générant l'interface de modification d'un chapitre
+     */
     public function modification()
     {
         $chapitreId = $this->requete->getParametre('id');
@@ -105,6 +109,10 @@ class ControleurAdmin extends ControleurSecurise
         $this->rediriger("admin");
     }
 
+    /**
+     * Fonction de modification de chapitre dans la bdd
+     * Redirection sur l'interface d'administration index()
+     */
     public function modifierChapitre()
     {
         $chapitreId = $this->requete->getParametre("id");

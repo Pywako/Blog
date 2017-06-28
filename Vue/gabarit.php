@@ -120,6 +120,7 @@
         crossorigin="anonymous"></script>
 <script>
     $(function () {
+        // Message d'alerte
         $(".alert").alert();
         //Action click réponse à un commentaire
         $(".reponse").click(function (e) {

@@ -21,6 +21,10 @@ class ControleurConnexion extends Controleur
         $this->genererVue(array('session' => $session));
     }
 
+    /**
+     * Fonction de connexion, test des login et mot de passe
+     * @throws \Exception
+     */
     public function connecter()
     {
         if ($this->requete->existeParametrePost("login") && $this->requete->existeParametrePost("mdp"))
@@ -45,6 +49,9 @@ class ControleurConnexion extends Controleur
             throw new \Exception ("Action impossible : login ou mot de passe non défini");
     }
 
+    /**
+     * Fonction de déconnexion, destruction de la session
+     */
     public function deconnecter()
     {
         $this->requete->getSession()->detruire();
