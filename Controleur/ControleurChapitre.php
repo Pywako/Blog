@@ -51,11 +51,11 @@ class ControleurChapitre extends Controleur
     // Ajoute un commentaire sur un billet
     public function commenter()
     {
-        if (isset($_POST['auteur']) && !empty($_POST['auteur'])) {
+        if ($this->requete->existeParametrePost('auteur')) {
             $pattern = "#[a-zA-Z0-9]{3}#";
             $auteur = htmlspecialchars($this->requete->getParametre("auteur"));
             if (preg_match($pattern, $auteur)) {
-                if (isset($_POST['contenu']) && !empty($_POST['contenu'])) {
+                if ($this->requete->existeParametrePost('contenu')) {
                     $contenu = htmlspecialchars($this->requete->getParametre("contenu"));
                     if ($this->requete->existeParametrePost('id')) {
                         $idChapitre = $this->requete->getParametre("id");
@@ -94,7 +94,7 @@ class ControleurChapitre extends Controleur
      */
     public function signaler()
     {
-        if (isset($_GET['id']) && !empty($_GET['id'])) {
+        if ($this->requete->existeParametreGet('id')) {
             $commentaireId = $this->requete->getParametre("id");
             $commentaire = $this->commentaire->getOneCommentaire($commentaireId);
             $this->commentaire->signaler($commentaireId);
