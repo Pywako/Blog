@@ -168,6 +168,11 @@ class Chapitre extends Modele {
             $this->executerRequete($sql, array($nbCom, $chapitreId));
     }
 
+    /**
+     * Fonction de récupération de l'id du chapitre suivant
+     * @param $idchapitre
+     * @return mixed
+     */
     public function chapitreSuivant($idchapitre){
         //Récupération numéro du chapitre en cours de lecture
         $sql = 'SELECT chap_numero AS chap_numero FROM t_chapitre WHERE chap_id = ? ';
@@ -181,6 +186,12 @@ class Chapitre extends Modele {
         $ligne = $resultat->fetch();
         return $ligne['chap_id'] ;
     }
+
+    /**
+     * Fonction de récupération de l'id du chapitre précédent
+     * @param $idchapitre
+     * @return mixed
+     */
     public function chapitrePrecedent($idchapitre){
         //Récupération numéro du chapitre en cours de lecture
         $sql = 'SELECT chap_numero AS chap_numero FROM t_chapitre WHERE chap_id = ? ';
