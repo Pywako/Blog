@@ -2,8 +2,11 @@
     <?php $this->titre = "Billet pour l'Alaska"; ?>
     <article class="chapitre">
         <header>
-            <h1 class="titreChapitre">
-                Chapitre <?= $this->nettoyer($chapitre['numero']) . " - " . $this->nettoyer($chapitre['titre']) ?></h1>
+            <a href="<?= "Chapitre/index/" . $this->nettoyer($chapitre['id']) ?>">
+                <h1 class="titreChapitre">
+                    Chapitre <?= $this->nettoyer($chapitre['numero']) . " - " . $this->nettoyer($chapitre['titre']) ?>
+                </h1>
+            </a>
             <time><?= $this->nettoyer($chapitre['date']) ?></time>
         </header>
         <p><?= $chapitre['contenu'] ?></p>

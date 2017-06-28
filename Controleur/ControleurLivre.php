@@ -33,7 +33,6 @@ class ControleurLivre extends Controleur {
                 'session'   => $session
                 ));
         }
-
     }
     /**
      * Gestion de la pagination des chapitres
