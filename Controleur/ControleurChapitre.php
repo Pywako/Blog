@@ -70,6 +70,8 @@ class ControleurChapitre extends Controleur
                                 $this->requete->getSession()->setflash("Merci pour votre retour, Commentaire ajouté ! ;)", "success");
                             }
                             $this->commentaire->ajouterCommentaire($auteur, $contenu, $idChapitre, $idParent);
+                            $nbCom = $this->commentaire->getNbCommentairesChapitre($idChapitre);
+                            $this->chapitre->miseAjourNbCommentaire($nbCom, $idChapitre);
                         } else {
                             $this->requete->getSession()->setflash("id du chapitre non conforme :(", "danger");
                         }

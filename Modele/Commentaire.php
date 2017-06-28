@@ -119,6 +119,7 @@ class Commentaire extends Modele
     {
         $sql = "DELETE FROM t_commentaire WHERE com_id = ?";
         $this->executerRequete($sql, array($commentaireId));
+
     }
 
     /**Préparation des commentaires
@@ -143,5 +144,18 @@ class Commentaire extends Modele
             }
         }
         return $tableauCommentaires;
+    }
+
+    /**
+     * Fonction de récupération du nombre de commentaire pour un chapitre donné
+     * @param $chapitreId
+     * @return mixed
+     */
+    public function getNbCommentairesChapitre($chapitreId)
+    {
+        $sql = 'SELECT count(chap_id) AS nb_com FROM t_commentaire WHERE chap_id = ?';
+        $resultat = $this->executerRequete($sql, array($chapitreId));
+        $ligne = $resultat->fetch();
+        return $ligne['nb_com'];
     }
 }

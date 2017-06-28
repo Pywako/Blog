@@ -156,4 +156,15 @@ class Chapitre extends Modele {
         $sql = "DELETE FROM t_chapitre WHERE chap_id = ?";
         $this->executerRequete($sql, array($chapitreId));
     }
+
+    /**
+     * Fonction de mise à jour du nombre de commentaire dans la table chapitre
+     * @param $nbCom
+     * @param $chapitreId
+     */
+    public function miseAjourNbCommentaire($nbCom,$chapitreId)
+    {
+        $sql = "UPDATE t_chapitre SET chap_nbcom = ? WHERE chap_id = ?";
+            $this->executerRequete($sql, array($nbCom, $chapitreId));
+    }
 }

@@ -194,15 +194,27 @@ class ControleurAdmin extends ControleurSecurise
         return $pagination;
     }
 
+    /**
+     * Function de suppresion de commentaire
+     */
     public function supprimerCommentaire()
     {
         $commentaireId = $this->requete->getParametre('id');
         $commentaire = $this->commentaire->getOneCommentaire($commentaireId);
         $this->commentaire->supprimerCommentaire($commentaireId);
         $contenuCommentaire = $commentaire['com_contenu'];
+        // Mise à jour du nombre de commentaire dans la table chapitre
+        $idChapitre = $commentaire['chap_id'];
+        $nbCom = $this->commentaire->getNbCommentairesChapitre($idChapitre);
+        $this->chapitre->miseAjourNbCommentaire($nbCom, $idChapitre);
+
         $this->requete->getSession()->setflash("Le commentaire $contenuCommentaire a bien été supprimé.", "success");
         $this->rediriger("admin");
     }
+
+    /**
+     * Function de remise des signalements à zéro
+     */
     public function remiseAZero()
     {
         $commentaireId = $this->requete->getParametre('id');
