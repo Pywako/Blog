@@ -13,7 +13,6 @@
         <header>
             <h1 id="titreReponses">Réponses à <?= $this->nettoyer($chapitre['titre']) ?></h1>
         </header>
-
         <?php
         // Inclusion de la partie HTML
         //Boucle sur les parents
