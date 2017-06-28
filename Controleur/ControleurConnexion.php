@@ -29,8 +29,8 @@ class ControleurConnexion extends Controleur
     {
         if ($this->requete->existeParametrePost("login") && $this->requete->existeParametrePost("mdp"))
         {
-            $login = $this->requete->getParametre("login");
-            $mdp = $this->requete->getParametre("mdp");
+            $login = htmlspecialchars($this->requete->getParametre("login"));
+            $mdp = htmlspecialchars($this->requete->getParametre("mdp"));
             $patternLogin = "#[a-zA-Z0-9]{4}#";
             if(preg_match($patternLogin, $login)){
                 $patternMdp = "#[a-zA-Z0-9]{4}#";
