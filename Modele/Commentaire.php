@@ -44,7 +44,10 @@ class Commentaire extends Modele
           chap_id AS chap_id 
           FROM t_commentaire ORDER BY com_signalement DESC, com_date DESC';
         $commentaires = $this->executerRequete($sql);
-        return $commentaires;
+        if ($commentaires->rowCount() > 0) {
+            return $commentaires;
+        } else
+            throw new \Exception("Aucun commentaire");
     }
 
     public function getOneCommentaire($idCommentaire)

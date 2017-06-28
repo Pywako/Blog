@@ -91,7 +91,10 @@ class Chapitre extends Modele {
           chap_id AS id 
           FROM t_chapitre ORDER BY chap_id DESC';
         $titres = $this->executerRequete($sql);
-        return $titres;
+        if ($titres->rowCount() > 0) {
+            return $titres;
+        } else
+            throw new \Exception("Aucun titre trouvé");
     }
     /**
      * Renvoie le nombre total de chapitres
@@ -115,7 +118,7 @@ class Chapitre extends Modele {
         $sql = 'SELECT chap_numero AS numero FROM t_chapitre ORDER BY chap_id DESC LIMIT 1 OFFSET 0';
         $resultat = $this->executerRequete($sql);
         $ligne = $resultat->fetch();
-        return $ligne['numero'];
+            return $ligne['numero'];
     }
 
     /**
