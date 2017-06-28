@@ -167,4 +167,31 @@ class Chapitre extends Modele {
         $sql = "UPDATE t_chapitre SET chap_nbcom = ? WHERE chap_id = ?";
             $this->executerRequete($sql, array($nbCom, $chapitreId));
     }
+
+    public function chapitreSuivant($idchapitre){
+        //Récupération numéro du chapitre en cours de lecture
+        $sql = 'SELECT chap_numero AS chap_numero FROM t_chapitre WHERE chap_id = ? ';
+        $resultat = $this->executerRequete($sql, array($idchapitre));
+        $ligne = $resultat->fetch();
+        $chapitreNumero = $ligne['chap_numero'] + 1 ;
+
+        // Récupération de id du chapitre suivant
+        $sqlSuivant = 'SELECT chap_id AS chap_id FROM t_chapitre WHERE chap_numero = ? ';
+        $resultat = $this->executerRequete($sqlSuivant, array($chapitreNumero));
+        $ligne = $resultat->fetch();
+        return $ligne['chap_id'] ;
+    }
+    public function chapitrePrecedent($idchapitre){
+        //Récupération numéro du chapitre en cours de lecture
+        $sql = 'SELECT chap_numero AS chap_numero FROM t_chapitre WHERE chap_id = ? ';
+        $resultat = $this->executerRequete($sql, array($idchapitre));
+        $ligne = $resultat->fetch();
+        $chapitreNumero = $ligne['chap_numero'] - 1 ;
+
+        // Récupération de id du chapitre suivant
+        $sqlSuivant = 'SELECT chap_id AS chap_id FROM t_chapitre WHERE chap_numero = ? ';
+        $resultat = $this->executerRequete($sqlSuivant, array($chapitreNumero));
+        $ligne = $resultat->fetch();
+        return $ligne['chap_id'] ;
+    }
 }

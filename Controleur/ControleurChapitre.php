@@ -34,13 +34,17 @@ class ControleurChapitre extends Controleur
             } elseif ($this->requete->existeParametreGet("id") || $this->requete->existeParametrePost("id")) {
                 $idChapitre = $this->requete->getParametre("id");
             }
-            $chapitre = $this->chapitre->getChapitre($idChapitre);
-            $commentaires = $this->commentaire->formaterCommentaires($idChapitre);
-            $session = $this->requete->getSession();
+            $chapitre       = $this->chapitre->getChapitre($idChapitre);
+            $commentaires   = $this->commentaire->formaterCommentaires($idChapitre);
+            $session        = $this->requete->getSession();
+            $suivant        = $this->chapitre->chapitreSuivant($idChapitre);
+            $precedent      = $this->chapitre->chapitrePrecedent($idChapitre);
             $this->genererVue(array(
-                'chapitre' => $chapitre,
-                'commentaires' => $commentaires,
-                'session' => $session));
+                'chapitre'      => $chapitre,
+                'commentaires'  => $commentaires,
+                'session'       => $session,
+                'suivant'       => $suivant,
+                'precedent'     => $precedent));
         } else {
             $session = $this->requete->getSession();
             $this->requete->getSession()->setflash("Le chapitre sélectionné n'existe pas :(", "danger");

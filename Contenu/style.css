@@ -123,3 +123,8 @@ header{
 #formulaireReponse{
     display: none;
 }
+#precefentSuivant{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
