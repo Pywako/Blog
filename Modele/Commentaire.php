@@ -1,16 +1,20 @@
 <?php
+
 namespace P3_blog\Modele;
+
 use P3_blog\Framework\Modele;
+
 /**
- * Fournit les services d'accès aux genres musicaux 
+ * Classe permettant d'interagir avec la bdd et préparer, ajouter, supprimer les commentaires
  *
  */
-class Commentaire extends Modele {
+class Commentaire extends Modele
+{
 
 // Renvoie la liste des commentaires associés à un chapitre
-    public function getCommentaires($idChapitre) {
-        if (isset($idChapitre))
-        {
+    public function getCommentaires($idChapitre)
+    {
+        if (isset($idChapitre)) {
             $sql = 'SELECT 
               com_id AS id, 
               com_auteur AS auteur, 
@@ -18,16 +22,13 @@ class Commentaire extends Modele {
               com_contenu AS contenu,
               com_signalement AS signalement, 
               chap_id AS chap_id,
-              parent_id AS parent_id, 
-              com_enfant AS enfant 
+              parent_id AS parent_id
               FROM t_commentaire WHERE chap_id=?';
             $req = $this->executerRequete($sql, array($idChapitre));
             $commentaires = $req->fetchAll(\PDO::FETCH_ASSOC);
             return $commentaires;
-        }
-        else
-        {
-            throw new \Exception("Aucun commentaire à l'identifiant '$idCommentaire'");
+        } else {
+            throw new \Exception("Aucun commentaire à l'identifiant '$idChapitre'");
         }
 
     }
@@ -73,17 +74,17 @@ class Commentaire extends Modele {
           chap_id AS chap_id 
           FROM t_commentaire ORDER BY com_signalement DESC, com_id DESC';
         $resultat = $this->executerRequete($sql, array($params), $offset, $limit);
-        if($resultat->rowCount() > 0 )
-        {
+        if ($resultat->rowCount() > 0) {
             return $resultat;
-        }
-        else
+        } else
             throw new \Exception("offset et limite mal définies");
     }
-    public function ajouterCommentaire($auteur, $contenu, $idChapitre) {
-        $sql = 'INSERT INTO t_commentaire(com_auteur, com_contenu, chap_id)'
-            . ' VALUES(?,?,?)';
-        $this->executerRequete($sql, array($auteur, $contenu, $idChapitre));
+
+    public function ajouterCommentaire($auteur, $contenu, $idChapitre, $idParent = null)
+    {
+        $sql = 'INSERT INTO t_commentaire(com_auteur, com_contenu, chap_id, parent_id)'
+            . ' VALUES(?,?,?,?)';
+        $this->executerRequete($sql, array($auteur, $contenu, $idChapitre, $idParent));
     }
 
     /**
@@ -98,6 +99,7 @@ class Commentaire extends Modele {
         $ligne = $resultat->fetch();
         return $ligne['nbCommentaires'];
     }
+
     public function signaler($commentaireId)
     {
         $sql = "UPDATE t_commentaire SET com_signalement = com_signalement + 1 WHERE com_id = ?";
@@ -114,5 +116,29 @@ class Commentaire extends Modele {
     {
         $sql = "DELETE FROM t_commentaire WHERE com_id = ?";
         $this->executerRequete($sql, array($commentaireId));
+    }
+
+    /**Préparation des commentaires
+     * @param $idChapitre
+     */
+    public function formaterCommentaires($idChapitre)
+    {
+        $commentaires = $this->getCommentaires($idChapitre);
+        $tableauCommentaires = array(
+            "parent"   => [],
+            "enfant"        => []
+        );
+
+        foreach ($commentaires as $commentaire)
+        {
+            if($commentaire['parent_id'] == null)
+            {
+                $tableauCommentaires["parent"][] = $commentaire;
+            }
+            else{
+                $tableauCommentaires["enfant"][$commentaire['parent_id']][] = $commentaire;
+            }
+        }
+        return $tableauCommentaires;
     }
 }

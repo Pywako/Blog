@@ -117,3 +117,9 @@ header{
 .signalement{
     color: red;
 }
+.card{
+    margin-bottom: 10px;
+}
+#formulaireReponse{
+    display: none;
+}

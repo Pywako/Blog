@@ -4,9 +4,6 @@ namespace P3_blog\Framework;
 /**
  * Classe de redirection des requêtes entrantes
  *
- * Inspirée du SimpleFramework de Frédéric Guillot et du cours de Baptiste Pesquet
- * (https://github.com/fguillot/simpleFramework)
- * (https://github.com/bpesquet/MonBlog/tree/master)
  */
 
 class Routeur

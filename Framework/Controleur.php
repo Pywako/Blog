@@ -2,10 +2,9 @@
 namespace P3_blog\Framework;
 
 /**
- * Created by PhpStorm.
- * User: Pywa
- * Date: 26/05/2017
- * Time: 11:08
+ * Classe abstraite Contorleur
+ * Fournit des services communs aux classes contrôleurs dérivées.
+ *
  */
 abstract class Controleur
 {
